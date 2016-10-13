@@ -1,68 +1,129 @@
 <!doctype HTML>
 <html>
     <head>
-        <title>Test 1.0</title>
+        <title>Luleå - Sveriges nordliga metropol</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="normalize.css">
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <!--<link rel="stylesheet" type="text/css" href="normalize.css" />-->
+        <link id='pagestyle' href='style.css' rel='stylesheet' type='text/css'/>
+        <link id='pagestyle2' href='style2.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)' />
+        
+       
+    <script>
+    
+    function swapStyleSheet(sheet) {
+        document.getElementById("pagestyle").setAttribute("href", sheet);
+        document.getElementById("pagestyle2").setAttribute("href", sheet);
+    }
+
+    function initate() {
+        var style1 = document.getElementById("stylesheet1");
+        var style2 = document.getElementById("stylesheet2");
+        var style4 = document.getElementById("nostyle");
+
+
+        style1.onclick = function () { swapStyleSheet("style.css") };
+        style2.onclick = function () { swapStyleSheet("style2.css"); };
+        style4.onclick = function () { swapStyleSheet(""); };
+    }
+
+
+    window.onload = initate;
+
+
+    </script>
+
     </head>
     <body>
         <div id="wrapper">
+            <nav id="main-nav">
+                <ul>
+                    <li>
+                        <a href="http://www.lulea.nu/en/besoekare/turistinformation/" class="main-nav-item" target="_blank">Kontakt</a>
+                    </li>
+                    <li>
+                        <a href="#" class="main-nav-item">Välj CSS</a>
+                        <div class="nav-content">
+                            <div class="nav-sub">
+                                <ul>
+                                    <li><a id="stylesheet1" href="#">Normal</a></li>
+                                    <li><a id="stylesheet2" href="#">Enkel</a></li>
+                                    <li><a id="nostyle" href="#">Ingen</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
             <div id="header">
-                <img id="logo"src="logo.png" alt="logo"/>
+                <img id="logo" style="height: 100px; width: 100px;" src="logo.png" alt="logo"/>
                 <div id="title"><h1>Luleå</h1></div>
                 <div id="slogan"><b>vad jag längtar dit!</b></div>
             </div>
             <div id="content">
-                <p id="sommarText">Sportoteket och biblioteket på plats. Genom att Sportoteket finns på
-                plats med sin verksamhet och lånar ut idrottsutrustning som Luleåbor
-                har skänkt, kan du prova på platsens alla aktiviteter utan att behöva
-                ta med egna prylar. Du kan låna till exempel basketboll, fotboll,
-                hopprep, pingisracket med boll, hink och spade, volleyboll med mera.
+                <!--Ett försök att skapa en visa/dölj-funktion med knappar.
 
-                <br>Varje tisdag eftermiddag arrangeras sportaktiviteter i
-                samarbete med det lokala föreningslivet.
+                    Utan JavaScript så blir det dock lite knepigt, då det endast funkar
+                    att köra med :focus-funktionen i CSS.
 
-                <br>Biblioteket lånar ut böcker och sällskapsspel och erbjuder sagostund varje söndag.
+                    Resultatet är att innehållet försvinner så fort knappen hamnar
+                    ur fokus = när man trycker någon annan stans på sidan.
+                -->
+                <button type="button" id="visaSommar">Sommar i Luleå</button>
+                <button type="button" id="visaVinter">Vinter i Luleå</button>
+                <div id="sommarText">
+                    <p>Sportoteket och biblioteket på plats. Genom att Sportoteket finns på
+                        plats med sin verksamhet och lånar ut idrottsutrustning som Luleåbor
+                        har skänkt, kan du prova på platsens alla aktiviteter utan att behöva
+                        ta med egna prylar. Du kan låna till exempel basketboll, fotboll,
+                        hopprep, pingisracket med boll, hink och spade, volleyboll med mera.
 
-                <br><br>På hamnplanen kan du spela "Sommar ♥ Luleå", ett sällskapsspel i storformat.
-                Hyllad fotoutställning visas utomhus
+                        <br>Varje tisdag eftermiddag arrangeras sportaktiviteter i
+                        samarbete med det lokala föreningslivet.
 
-                <br>Fotografiskas hyllade och uppmärksammade "Ikoner – en utställning om att få finnas"
-                ställs ut på Södra strand i sommar. Modellerna, som alla har Downs syndrom,
-                porträtterar olika historiska och mytologiska ikoner genom tiderna.
+                        <br>Biblioteket lånar ut böcker och sällskapsspel och erbjuder sagostund varje söndag.
 
-                <br>Utställningen är ett samarbete mellan Glada Hudik-teatern och Fotografiska i Stockholm.
-                Den visas utomhus på Södra strand mellan den 20 juni och 21 augusti, med en paus 13-16 juli.</p>
-                <figure id="figure1">
-                    <img id="strandplan" src="sodra_strand.jpg" alt="Södra Strand">
-                    <figcaption>Södra strand.<br>En exotisk oas mitt i centrum!</figcaption>
-                </figure>
-                <p id="figure2"/>
-                <figure id="figure3">
-                    <figcaption>Hundspannsåkning!<br>Från centrum till äventyr i skärgården!</figcaption>
-                    <img id="huskytransport" src="huskytransport.jpg" alt="Huskytransport">
-                </figure>
-                <p id="vinterText">Åk hundspann från Luleås centrum rakt ut i ett spännande skärgårdsäventyr.
-                Eller följ med på skotersafari i det arktiska snölandskapet.
-                Eller varför inte vinterbada efter ett ångande hett bastubad.
-                Eller ta bilen ut på milslånga isvägar och ät middag i en lappkåta mitt ute på isen.
+                        <br><br>På hamnplanen kan du spela "Sommar ♥ Luleå", ett sällskapsspel i storformat.
+                        Hyllad fotoutställning visas utomhus
 
-                <br>Tidsperiod: januari till april.
+                        <br>Fotografiskas hyllade och uppmärksammade "Ikoner – en utställning om att få finnas"
+                        ställs ut på Södra strand i sommar. Modellerna, som alla har Downs syndrom,
+                        porträtterar olika historiska och mytologiska ikoner genom tiderna.
 
-                <br>Dinner on Ice– I Swedish Lapland gör vi saker på vårt eget sätt.
-                Vi serverar en trerätters middag med vin i kristallglas och ljus i silverkandelabrar
-                i en lappkåta mitt ute på den frusna Bottenviken.
-                Där kyler vi champagnen i ett hål i isen och ofta ackompanjeras middagen
-                av ett sprakande norrsken.
-                Och det bästa av allt – du är inbjuden att delta!
+                        <br>Utställningen är ett samarbete mellan Glada Hudik-teatern och Fotografiska i Stockholm.
+                        Den visas utomhus på Södra strand mellan den 20 juni och 21 augusti, med en paus 13-16 juli.
+                    </p>
+                    <figure id="figure1">
+                        <img id="strandplan" style="height: auto; width: 250px;" src="sodra_strand.jpg" alt="Södra Strand">
+                        <figcaption>Södra strand.<br>En exotisk oas mitt i centrum!</figcaption>
+                    </figure>
+                </div>
+                <div id="vinterText">
+                    <p>Åk hundspann från Luleås centrum rakt ut i ett spännande skärgårdsäventyr.
+                        Eller följ med på skotersafari i det arktiska snölandskapet.
+                        Eller varför inte vinterbada efter ett ångande hett bastubad.
+                        Eller ta bilen ut på milslånga isvägar och ät middag i en lappkåta mitt ute på isen.
 
-                <br>Pack-Is safari – Under vintern pressas stora block av snö och is samman av vinden
-                och det hårda klimatet i den yttre skärgården.
-                Professionella guider tar dig med skoter, hundspann eller bil över isen
-                och ut till de så kallade pack-is vallarna som kan bli upp mot 15 meter höga.
-                Klättra upp och njut av utsikten
-                och det arktiska klimatet! Har du tur kanske du ser sälar.</p>
+                        <br>Tidsperiod: januari till april.
+
+                        <br>Dinner on Ice– I Swedish Lapland gör vi saker på vårt eget sätt.
+                        Vi serverar en trerätters middag med vin i kristallglas och ljus i silverkandelabrar
+                        i en lappkåta mitt ute på den frusna Bottenviken.
+                        Där kyler vi champagnen i ett hål i isen och ofta ackompanjeras middagen
+                        av ett sprakande norrsken.
+                        Och det bästa av allt – du är inbjuden att delta!
+
+                        <br>Pack-Is safari – Under vintern pressas stora block av snö och is samman av vinden
+                        och det hårda klimatet i den yttre skärgården.
+                        Professionella guider tar dig med skoter, hundspann eller bil över isen
+                        och ut till de så kallade pack-is vallarna som kan bli upp mot 15 meter höga.
+                        Klättra upp och njut av utsikten
+                        och det arktiska klimatet! Har du tur kanske du ser sälar.
+                    </p>
+                    <figure id="figure2" class="hide">
+                        <img id="huskytransport" style="height: auto; width: 250px;" src="huskytransport.jpg" alt="Huskytransport">
+                        <figcaption>Hundspannsåkning!<br>Från centrum till äventyr i skärgården!</figcaption>
+                    </figure>
+                </div>
             </div>
             <div id="footer"><p>Av Maximilan Sundberg &amp; Håkan Arnoldson</p></div>
         </div>

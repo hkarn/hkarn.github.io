@@ -1,0 +1,211 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+html {
+    position: relative;
+    min-height: 100%;
+    background: url(background.jpg) center center fixed;
+    background-size: cover;
+    overflow-y: scroll;
+    overflow-x: auto;
+}
+
+body {
+    padding: 10px;
+    font-family: "Open Sans";
+}
+
+
+#wrapper {
+  background:#fff;
+  width: 1020px;
+  min-height: 800px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-device-width: 480px) {
+  #wrapper {
+    min-height: 2500px;
+}
+
+}
+
+
+#main-nav {
+  	height: 40px;
+  	padding-right:100px;
+  	float: right;
+}
+
+#main-nav > Ul > li {
+  	display: inline-block;
+  	position: relative;
+}
+
+.main-nav-item {
+  	display: inline-block;
+  	padding: 10px 10px;
+  	height: 30px;
+  	line-height: 30px;
+  	text-decoration:none;
+  	color:#000;
+  	font-weight:bold;
+}
+
+.main-nav-item:hover {
+    background:#000;
+    color:#fff;
+  	transition:color 100ms ease-in;
+}
+
+.main-nav-item:hover ~ .nav-content {
+  	max-height:400px;
+  	-webkit-transition:max-height 400ms ease-in;
+  	-moz-transition:max-height 400ms ease-in;
+  	transition:max-height 400ms ease-in;
+}
+
+.nav-content:hover {
+  	max-height:400px;
+}
+
+.nav-content {
+  	position:absolute;
+  	top:45px;
+  	overflow: hidden;
+  	max-height:0;
+	border-radius: 15%;
+}
+
+.nav-content a {
+  	text-decoration:none;
+  	color: rgba(0, 0, 0, 1);
+  	white-space: nowrap;
+	/*border-radius: 0%;*/
+}
+
+.nav-content a:hover {
+	border-radius: 15%;
+  	transition:border-radius 200ms ease-in;
+  	background:#000;
+  	color:#fff;
+}
+
+.nav-sub {
+  	padding:0px;
+}
+
+.nav-sub ul {
+  	padding:10px 0;
+  	margin:0;
+  	list-style-type:none;
+  	text-align: left;
+}
+
+.nav-sub ul li a {
+  	display:inline-block;
+  	padding:10px;
+}
+
+#header {
+	border-radius: 100%;
+	clear: both;
+	height: 100px;
+	width: 40%;
+	margin-left: 30%;
+	margin-bottom:15px;
+	padding-bottom: 20px;
+	background:dodgerblue;
+	color:#fff;
+}
+#header img {
+	float: left;
+	margin-left: 10%;
+	margin-top: 10px;
+}
+#title {
+	float: left;
+	padding-left: 10%;
+}
+#slogan {
+	float: right;
+	padding-right: 20%;
+	font-style: italic;
+}
+
+#content {
+    margin-bottom:100px;
+}
+
+#visaSommar {
+    float: left;
+    margin-bottom: 50px;
+    margin-left: 20%;
+    font-size:1.5em;
+}
+
+#visaVinter {
+    float: right;
+    margin-bottom: 50px;
+    margin-right: 20%;
+    font-size:1.5em;
+}
+
+#visaSommar:focus ~ #sommarText,
+#visaVinter:focus ~ #vinterText {
+    display: block;
+    -webkit-transition:display 400ms ease-in;
+  	-moz-transition:display 400ms ease-in;
+  	transition:display 400ms ease-in;
+}
+
+#sommarText > p,
+#vinterText > p {
+    position:relative;
+    top:-50px;
+    left:0px;
+    float: right;
+    width: 900px;
+}
+
+#sommarText,
+#vinterText {
+    display: none;
+    width: 1020px;
+    float: right;
+    margin-right: 40px;
+    font-size:1.1em;
+}
+
+#visaSommar {
+    float: left;
+    margin-bottom: 50px;
+    margin-left: 10%;
+}
+
+#figure1,
+#figure2 {
+    background: rgba(0, 100, 0, 0.3);
+    /* margin-top: 1.5em;
+    margin-right: 0; */
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    position:relative;
+    top:-75px;
+    left:730px;
+    /* margin-bottom: 0; */
+}
+
+#footer {
+    clear: both;
+    color: #fff;
+    font-size:1.5em;
+    font-weight:bold;
+    position: absolute;
+    text-align: center;
+    height: 60px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    }
