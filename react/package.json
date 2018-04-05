@@ -1,6 +1,6 @@
 {
   "name": "portfolio-and-cv-site",
-  "homepage": "https://hkarn.github.io/hkarn/hkarn.github.io/",
+  "homepage": "https://hkarn.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -34,7 +34,7 @@
     "build": "npm-run-all build-css-prod build-js",
     "test": "react-scripts test --env=jsdom",
     "deploy": "run-s build deploy-ghpages",
-    "deploy-ghpages": "gh-pages -d build",
+    "deploy-ghpages": "gh-pages -b master -d build",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

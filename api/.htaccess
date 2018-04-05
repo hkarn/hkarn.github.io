@@ -1,0 +1,21 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L,NC,QSA]
+</IfModule>
+
+<FilesMatch ".(html|htm|php|json|pdf)$">  
+Header set Cache-Control "max-age=10"  
+</FilesMatch>  
+
+<FilesMatch ".(js|css|txt)$">  
+Header set Cache-Control "max-age=20"  
+</FilesMatch>  
+
+<FilesMatch ".(flv|swf|ico|gif|jpg|jpeg|png)$">  
+Header set Cache-Control "max-age=30"  
+</FilesMatch>  
