@@ -1,0 +1,9 @@
+{
+  "loader": {
+    "firstlinedefault":     "Laddar",
+    "firstlineerror":       "Ett fel inträffade. Kompponenten kunde inte laddas!",
+    "secondlineerror":      "Försök att ladda om sidan, tryck på F5.",
+    "firstlinetimeout":     "Det tog längre tid än väntat att ladda komponenten.",
+    "secondlinetimeout":    "Fortsätt vänta (om du är på en riktigt långsam anslutning) eller ladda om genom att trycka på F5."
+  }
+}
