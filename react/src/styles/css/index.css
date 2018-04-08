@@ -37,6 +37,58 @@ body > #root > div {
   color: #fff;
 }
 
+.TopMenuWrapper .LanguageSelector {
+  margin-left: 10px;
+  width: 100px;
+  display: inline-block;
+  padding: 0 7px 0 10px;
+  font-size: 2em;
+  margin-right: auto;
+  border-radius: 6px 6px 0 0;
+}
+
+.TopMenuWrapper .LanguageSelector:focus, .TopMenuWrapper .LanguageSelector:focus-within {
+  outline: 0;
+}
+
+.TopMenuWrapper .LanguageSelector.open {
+  background-color: #fff;
+  color: #000;
+  outline: 0;
+}
+
+.TopMenuWrapper .LanguageSelector.open .LanguageDropDown,
+.TopMenuWrapper .LanguageSelector.open .LanguageDropDown,
+.TopMenuWrapper .LanguageSelector.open .LanguageDropDown {
+  visibility: visible;
+  z-index: 10;
+}
+
+.TopMenuWrapper .LanguageSelector .LanguageDropDown {
+  visibility: hidden;
+  z-index: -9999;
+  width: 100px;
+  margin-left: -10px;
+  margin-top: -1px;
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.6em;
+  padding: 0 6px 5px 8px;
+  border-radius: 0 0 6px 6px;
+}
+
+.TopMenuWrapper .LanguageSelector .LanguageDropDown .LanguageItem {
+  padding: 1px 3px;
+}
+
+.TopMenuWrapper .LanguageSelector .LanguageDropDown .LanguageItem:focus, .TopMenuWrapper .LanguageSelector .LanguageDropDown .LanguageItem:focus-within {
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
+  outline: 0;
+}
+
 .MainContentWrapper {
   min-height: 100%;
   width: 100%;

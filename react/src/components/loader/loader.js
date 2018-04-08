@@ -113,6 +113,7 @@ const mapStateToProps = state => {
     return {_defaultLang: getActiveLanguage(state.locale).code};
   } catch (e) {
     return {_defaultLang: 'en'};
-  }};
+  }
+};
 
 export default connect(mapStateToProps, null)(Loader);

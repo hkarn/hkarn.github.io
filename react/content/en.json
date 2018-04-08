@@ -1,9 +1,0 @@
-{
-  "loader": {
-    "firstlinedefault":     "Loading",
-    "firstlineerror":       "An error occured loading the component!",
-    "secondlineerror":      "Try refreshing the page by hitting F5.",
-    "firstlinetimeout":     "Loading the component taking longer then expected!",
-    "secondlinetimeout":    "Either keep waiting (if you are on a slow connection) or try refresh by hitting F5."
-  }
-}

@@ -8,10 +8,44 @@ import faEnvelopeSquare from '@fortawesome/fontawesome-free-solid/faEnvelopeSqua
 import faLanguage from '@fortawesome/fontawesome-free-solid/faLanguage';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
+import LanguageSelector from './topm-language-sel';
+
 class TopMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showLanguageList: false,
+      isClickLocked: false,
+    };
+    this.clickTimer = null;
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.clickTimer);
+  }
+
+  toggleLanguageList = (toggle = null, isClick = false) => {
+    const {showLanguageList, isClickLocked} = this.state;
+    if (toggle === null) {
+      toggle = !showLanguageList;
+    }
+    /* Prevent immediate closing on mousin + click behaviour from user in desktop */
+    if (!(isClick && !toggle && isClickLocked)) {
+      this.setState({showLanguageList: toggle});
+    }
+    if (toggle && !isClick) {
+      this.setState({isClickLocked: true});
+      this.clickTimer = setTimeout(() => {
+        this.setState({isClickLocked: false});
+        clearTimeout(this.clickTimer);
+      }, 500);
+    }
+  }
 
 
   render() {
+    const {showLanguageList} = this.state;
+
 
     const iconStyle = {
       display: 'inline-block',
@@ -21,8 +55,11 @@ class TopMenu extends Component {
 
     return (
       <nav className="TopMenuWrapper">
-        <ul style={{display: 'flex', justifyContent: 'flex-end', alignContent: 'center', alignItems: 'center', padding: '3px'}}>
-          <li style={{display: 'inline-block', padding: '2px 5px', fontSize: '2em', marginRight: 'auto'}}><FontAwesomeIcon icon={faLanguage} /></li>
+        <ul style={{display: 'flex', justifyContent: 'flex-end', alignContent: 'center', alignItems: 'center', padding: '3px', listStyle: 'none'}}>
+          <li className={'LanguageSelector ' + (showLanguageList ? 'open' : '')} tabIndex="2" onFocus={() => this.toggleLanguageList(true)} onMouseEnter={() => this.toggleLanguageList(true)} onMouseLeave={() => this.toggleLanguageList(false)} onClick={() => this.toggleLanguageList(null, true)}>
+            <FontAwesomeIcon icon={faLanguage} />
+            <LanguageSelector />
+          </li>
           <li style={iconStyle}><FontAwesomeIcon icon={faLinkedin} /></li>
           <li style={iconStyle}><FontAwesomeIcon icon={faGithubSquare} /></li>
           <li style={iconStyle}><FontAwesomeIcon icon={faFacebookSquare} /></li>

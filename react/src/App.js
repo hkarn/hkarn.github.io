@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import WheelReact from 'wheel-react';
 import SwipeReact from 'swipe-react';
 import ArrowKeysReact from 'arrow-keys-react';
+import { getLanguages, getTranslate } from 'react-localize-redux';
 
-import {localizationInitialize} from './actions';
+import {localizationInitialize, addTranslations} from './actions';
 import IronImage from './components/ironimage';
 import Computer from './images/pixabay/computer-1245714_1920.jpg';
 import ComputerPre from './images/pixabay/computer-1245714_small.jpg';
@@ -17,6 +18,9 @@ import TopMenu from './components/topmenu';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isTranslationLoaded: false,
+    };
     const {localizationInitialize = () => {}} = this.props;
     localizationInitialize();
     WheelReact.config({
@@ -69,6 +73,15 @@ class App extends Component {
     this.topWrapper.focus();
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {addTranslations, languages = []} = this.props;
+    if (typeof nextProps.languages === 'object' && nextProps.languages.length > 0 && nextProps.languages !== languages) {
+      addTranslations();
+      this.setState({isTranslationLoaded: true});
+    }
+
+  }
+
   componentWillUnmount() {
     WheelReact.clearTimeout();
     ArrowKeysReact.clearTimeout();
@@ -76,6 +89,10 @@ class App extends Component {
   }
 
   render() {
+
+    const {isTranslationLoaded = false} = this.state;
+    const {translate} = this.props;
+
     return (
       <div className="App" style={{height: '100%'}}  {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div; }} >
         <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={.4} />
@@ -83,7 +100,7 @@ class App extends Component {
           <TopMenu />
           <div className="MainContentWrapper">
             <div style={{color: '#fff', fontSize: '4em', fontWeight: 'bold', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-              <div style={{marginTop: '-20vh'}}>Hello</div>
+              <div style={{marginTop: '-20vh'}}>{ isTranslationLoaded ? translate('welcome.greeting') : 'Hello' }</div>
               <img src={Me} alt="Håkan" style={{maxHeight: '20%', borderRadius: '20%'}}/>
             </div>
             <div style={{color: '#000', fontSize: '4em', fontWeight: 'bold'}}>Hello</div>
@@ -96,11 +113,21 @@ class App extends Component {
 }
 
 App.propTypes = {
-  localizationInitialize:              PropTypes.func
+  localizationInitialize: PropTypes.func,
+  addTranslations:        PropTypes.func,
+  languages:              PropTypes.array,
+  translate:              PropTypes.func,
+  currentLanguage:        PropTypes.string
 };
+
+const mapStateToProps = state => ({
+    languages: getLanguages(state.locale),
+    translate: getTranslate(state.locale),
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   localizationInitialize,
+  addTranslations,
 }, dispatch);
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
