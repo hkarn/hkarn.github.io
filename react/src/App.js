@@ -14,6 +14,7 @@ import ComputerPre from './images/pixabay/computer-1245714_small.jpg';
 import Me from './images/photos/me.png';
 
 import TopMenu from './components/topmenu';
+import NavigatorItem from './components/navigator-item';
 
 class App extends Component {
   constructor(props) {
@@ -95,17 +96,23 @@ class App extends Component {
 
     return (
       <div className="App" style={{height: '100%'}}  {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div; }} >
-        <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={.4} />
+        <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={.6} />
         <div className="MainWrapper">
           <TopMenu />
-          <div className="MainContentWrapper">
-            <div style={{color: '#fff', fontSize: '4em', fontWeight: 'bold', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-              <div style={{marginTop: '-20vh'}}>{ isTranslationLoaded ? translate('welcome.greeting') : 'Hello' }</div>
-              <img src={Me} alt="Håkan" style={{maxHeight: '20%', borderRadius: '20%'}}/>
+          <main className="MainContentWrapper">
+            <NavigatorItem position={'left'} targetText={'About'} isDark={false} />
+            <NavigatorItem position={'right'} targetText={'Showcase'} isDark={false}/>
+            <NavigatorItem position={'bottom'} targetText={'Contact'} isDark={false}/>
+            <NavigatorItem position={'top'} targetText={'up'} isDark={false}/>
+            <div style={{margin: '-10vh', color: '#fff', fontSize: '3.3vw', fontWeight: 'bold', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+              <div>
+                <h3>{ isTranslationLoaded ? translate('welcome.greeting') : 'Hello.' }</h3>
+                <h1 style={{margin: '20px  10px', fontSize: '1.6em'}}>{ isTranslationLoaded ? translate('welcome.im') : 'I am' } Håkan Arnoldson</h1>
+                <h2 style={{margin: '20px 10px'}}>{ isTranslationLoaded ? translate('welcome.title') : 'Full-stack developer' }</h2>
+              </div>
+              <img src={Me} alt="Håkan" style={{maxWidth: '35%', maxHeight: '20%', height: 'auto', width: 'auto', borderRadius: '20%', margin: '10px '}}/>
             </div>
-            <div style={{color: '#000', fontSize: '4em', fontWeight: 'bold'}}>Hello</div>
-            <div style={{color: '#000', fontSize: '4em', fontWeight: 'bold'}}>Hello</div>
-          </div>
+          </main>
         </div>
       </div>
     );
@@ -121,8 +128,8 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    languages: getLanguages(state.locale),
-    translate: getTranslate(state.locale),
+  languages: getLanguages(state.locale),
+  translate: getTranslate(state.locale),
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -1,5 +1,8 @@
 {
+  "locale": "en_GB",
   "welcome": {
-    "greeting":     "Hello!"
+    "greeting":     "Hello!",
+    "im":           "I am",
+    "title":        "Full-stack developer"
   }
 }

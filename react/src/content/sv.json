@@ -1,5 +1,8 @@
 {
+  "locale": "sv_SE",
   "welcome": {
-    "greeting":     "Hej!"
+    "greeting":     "Hej!",
+    "im":           "Jag är",
+    "title":        "Fullstackutvecklare"
   }
 }
