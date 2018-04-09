@@ -1,26 +1,26 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import faChevronLeft from '@fortawesome/fontawesome-free-solid/faChevronLeft'
 import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight'
 import faChevronDown from '@fortawesome/fontawesome-free-solid/faChevronDown'
 import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 
 /*
-There is a bug in FireFox with writing-mode vertical that has been resolved in the nightly build of FireFox
+There is a bug in FireFox with writing-mode vertical in flex that has been resolved in the nightly build of FireFox
 https://bugzilla.mozilla.org/show_bug.cgi?id=1267462
-Setting fixed dimensions on the flex container seems to solve this
+Setting fixed dimensions on the flex container seems to solve this for current version and Safari as well
 */
 
 class Navigator extends Component {
   render () {
-    const {position, targetText, isDark} = this.props
+    const {position, targetText, targetLink = '/404', isDark} = this.props
 
     let wrapperStyles = {
       display: 'block',
-      position: 'absolute',
-      backgroundColor: 'blue'
+      position: 'absolute'
     }
     let itemStyles = {
       display: 'flex',
@@ -109,15 +109,17 @@ class Navigator extends Component {
     }
 
     return (
-      <nav className={'NavItemWrapper ' + 'NavItemWrapper' + position} style={wrapperStyles}>
-        <a className={'NavItem ' + 'NavItem' + position} style={itemStyles} tabIndex="6">
+      /* eslint-disable react/forbid-component-props */
+      <nav className={'NavItemWrapper NavItemWrapper' + position} style={wrapperStyles}>
+        <Link to={targetLink} className={'NavItem NavItem' + position} style={itemStyles} tabIndex="6">
           {position === 'top' ? <FontAwesomeIcon icon={faChevronUp} size="lg" /> : ''}
           {position === 'bottom' ? <FontAwesomeIcon icon={faChevronDown} size="lg" /> : ''}
           {position === 'left' ? <FontAwesomeIcon icon={faChevronLeft} size="lg" /> : ''}
           {position === 'right' ? <FontAwesomeIcon icon={faChevronRight} size="lg" /> : ''}
           <p style={{padding: '4px'}}>{targetText}</p>
-        </a>
+        </Link>
       </nav>
+      /* eslint-enable react/forbid-component-props */
 
     )
   }
@@ -126,6 +128,7 @@ class Navigator extends Component {
 Navigator.propTypes = {
   position: PropTypes.string,
   targetText: PropTypes.string,
+  targetLink: PropTypes.string,
   isDark: PropTypes.bool
 }
 

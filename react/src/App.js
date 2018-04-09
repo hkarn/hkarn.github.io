@@ -7,14 +7,13 @@ import SwipeReact from 'swipe-react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { getLanguages, getTranslate } from 'react-localize-redux'
 
+import { Route, Link } from 'react-router-dom'
 import {localizationInitialize, addTranslations} from './actions'
-import IronImage from './components/ironimage'
-import Computer from './images/pixabay/computer-1245714_1920.jpg'
-import ComputerPre from './images/pixabay/computer-1245714_small.jpg'
-import Me from './images/photos/me.png'
+import MyLoadable from './components/loader/myloadable'
 
-import TopMenu from './components/topmenu'
-import NavigatorItem from './components/navigator-item'
+const MainScreen = MyLoadable({
+  loader: () => import('./screens/main')
+})
 
 class App extends Component {
   constructor (props) {
@@ -66,8 +65,6 @@ class App extends Component {
         console.log('down key detected.')
       }
     })
-
-
   }
 
   componentDidMount () {
@@ -94,24 +91,16 @@ class App extends Component {
 
     return (
       <div className="App" style={{height: '100%'}} {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div }} >
-        <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0.6} />
-        <div className="MainWrapper">
-          <TopMenu />
-          <main className="MainContentWrapper">
-            <NavigatorItem position={'left'} targetText={'About'} isDark={false} />
-            <NavigatorItem position={'right'} targetText={'Showcase'} isDark={false} />
-            <NavigatorItem position={'bottom'} targetText={'Contact'} isDark={false} />
-            <NavigatorItem position={'top'} targetText={'up'} isDark={false} />
-            <div style={{width: '98%', margin: '-10vh auto', color: '#fff', fontSize: '3.3vw', fontWeight: 'bold', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
-              <div>
-                <h3>{ isTranslationLoaded ? translate('welcome.greeting') : 'Hello.' }</h3>
-                <h1 style={{margin: '20px  10px', fontSize: '1.6em'}}>{ isTranslationLoaded ? translate('welcome.im') : 'I am' } Håkan Arnoldson</h1>
-                <h2 style={{margin: '20px 10px'}}>{ isTranslationLoaded ? translate('welcome.title') : 'Full-stack developer' }</h2>
-              </div>
-              <img src={Me} alt="Håkan" style={{maxWidth: '35%', maxHeight: '20%', height: 'auto', width: 'auto', borderRadius: '20%', margin: '10px '}} />
+        {isTranslationLoaded
+          ? (
+            <div style={{height: '100%'}}>
+              <Route path="/about" component={MainScreen} />
+              <Route path="/contact" component={MainScreen} />
+              <Route path="/showcase" component={MainScreen} />
+              <Route path="/" component={MainScreen} />
             </div>
-          </main>
-        </div>
+          )
+          : null}
       </div>
     )
   }
