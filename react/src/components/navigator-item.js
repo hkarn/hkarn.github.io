@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import faChevronLeft from '@fortawesome/fontawesome-free-solid/faChevronLeft';
-import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight';
-import faChevronDown from '@fortawesome/fontawesome-free-solid/faChevronDown';
-import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faChevronLeft from '@fortawesome/fontawesome-free-solid/faChevronLeft'
+import faChevronRight from '@fortawesome/fontawesome-free-solid/faChevronRight'
+import faChevronDown from '@fortawesome/fontawesome-free-solid/faChevronDown'
+import faChevronUp from '@fortawesome/fontawesome-free-solid/faChevronUp'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 /*
 There is a bug in FireFox with writing-mode vertical that has been resolved in the nightly build of FireFox
@@ -14,37 +14,35 @@ We make a browser check and override until this has been fixed in the standard b
 FireFox and Safari still treats absolute position right 0 different here and starts the element outside the window.
 Check and move the element to the left if these browsers detected
 */
-const { detect } = require('detect-browser');
+const { detect } = require('detect-browser')
 
 class Navigator extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
       isFirefox: false
-    };
-
-  }
-
-  componentWillMount() {
-    const browser = detect();
-
-    if (browser.name === 'firefox' || browser.name === 'safari') {
-      this.setState({isFirefox: true});
     }
 
   }
 
+  componentWillMount () {
+    const browser = detect()
 
-  render() {
+    if (browser.name === 'firefox' || browser.name === 'safari') {
+      this.setState({isFirefox: true})
+    }
+  }
 
-    const {isFirefox = false} = this.state;
+  render () {
+    const {isFirefox = false} = this.state
 
-    const {position, targetText, isDark} = this.props;
+    const {position, targetText, isDark} = this.props
 
     let wrapperStyles = {
-      display: 'inline-block',
-      position: 'fixed',
-    };
+      display: 'block',
+      position: 'absolute',
+      backgroundColor: 'blue'
+    }
     let itemStyles = {
       display: 'flex',
       justifyContent: 'center',
@@ -52,66 +50,66 @@ class Navigator extends Component {
       alignContent: 'center',
       padding: '4px',
       textTransform: 'lowercase',
-      letterSpacing: '3px',
-    };
+      letterSpacing: '3px'
+    }
 
     const styleLight = {
       color: '#fff'
-    };
+    }
 
     const styleDark = {
       color: '#000'
-    };
+    }
 
     if (position === 'top') {
       const styles = {
         flexDirection: 'column'
-      };
+      }
       const wrapper = {
         top: '0',
         left: '50%',
         transform: 'translateX(-50%)'
-      };
-      itemStyles = {...itemStyles, ...styles};
-      wrapperStyles = {...wrapperStyles, ...wrapper};
+      }
+      itemStyles = {...itemStyles, ...styles}
+      wrapperStyles = {...wrapperStyles, ...wrapper}
 
     } else if (position === 'bottom') {
       const styles = {
         flexDirection: 'column-reverse'
-      };
+      }
       const wrapper = {
         bottom: '0',
         left: '50%',
         transform: 'translateX(-50%)'
-      };
-      itemStyles = {...itemStyles, ...styles};
-      wrapperStyles = {...wrapperStyles, ...wrapper};
+      }
+      itemStyles = {...itemStyles, ...styles}
+      wrapperStyles = {...wrapperStyles, ...wrapper}
 
     } else if (position === 'left') {
       const styles = {
         flexDirection: 'column',
         writingMode: 'vertical-lr',
-        textOrientation: 'upright',
-      };
+        textOrientation: 'upright'
+      }
       const wrapper = {
         left: '0',
         top: '50%',
         transform: 'translateY(-50%)'
-      };
-      itemStyles = {...itemStyles, ...styles};
-      wrapperStyles = {...wrapperStyles, ...wrapper};
+      }
+      itemStyles = {...itemStyles, ...styles}
+      wrapperStyles = {...wrapperStyles, ...wrapper}
     
     } else if (position === 'right') {
       const styles = {
         flexDirection: 'column',
         writingMode: 'vertical-rl',
-        textOrientation: 'upright',
-      };
+        textOrientation: 'upright'
+      }
       const wrapper = {
         right: '0',
         top: '50%',
         transform: 'translateY(-50%)'
-      };
+      }
       if (isFirefox) {
         const wrapperFirefox = {
           top: '50%',
@@ -119,30 +117,28 @@ class Navigator extends Component {
           right: '40px',
           margin: 'auto',
           textAlign: 'center'
-        };
+        }
         const firefoxStyle = {
           display: 'block',
           writingMode: 'vertical-rl',
-          textOrientation: 'upright',
-        };
-        itemStyles = {...itemStyles, ...firefoxStyle};
-        wrapperStyles = {...wrapperStyles, ...wrapperFirefox};
+          textOrientation: 'upright'
+        }
+        itemStyles = {...itemStyles, ...firefoxStyle}
+        wrapperStyles = {...wrapperStyles, ...wrapperFirefox}
       } else {
-        itemStyles = {...itemStyles, ...styles};
-        wrapperStyles = {...wrapperStyles, ...wrapper};
+        itemStyles = {...itemStyles, ...styles}
+        wrapperStyles = {...wrapperStyles, ...wrapper}
       }
-
     } else {
-      wrapperStyles = {display: 'none'};
-      itemStyles = {display: 'none'};
+      wrapperStyles = {display: 'none'}
+      itemStyles = {display: 'none'}
     }
 
     if (isDark) {
-      itemStyles = {...itemStyles, ...styleDark};
+      itemStyles = {...itemStyles, ...styleDark}
     } else {
-      itemStyles = {...itemStyles, ...styleLight};
+      itemStyles = {...itemStyles, ...styleLight}
     }
-
 
     return (
       <nav className="NavItemWrapper" style={wrapperStyles}>
@@ -155,10 +151,8 @@ class Navigator extends Component {
         </a>
       </nav>
 
-
-    );
+    )
   }
 }
 
-
-export default connect(null, null)(Navigator);
+export default connect(null, null)(Navigator)
