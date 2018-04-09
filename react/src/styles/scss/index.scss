@@ -119,6 +119,16 @@ body > #root > div {
   }
 }
 
+.NavItemWrapper {
+  a, a:visited, a:active, a:link {
+    text-decoration: none;
+    color: inherit
+  }
+  a:hover {
+    
+  }
+} 
+
 .sr-only {
   position: absolute;
   width: 1px;

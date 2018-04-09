@@ -110,6 +110,11 @@ body > #root > div {
   height: calc(100vh - 45px);
 }
 
+.NavItemWrapper a, .NavItemWrapper a:visited, .NavItemWrapper a:active, .NavItemWrapper a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
