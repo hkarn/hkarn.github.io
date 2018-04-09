@@ -125,4 +125,10 @@ body > #root > div {
   display: none;
 }
 
+@media only screen and (max-width: 380px) {
+  .NavItemWrappertop {
+    left: 35% !important;
+  }
+}
+
 /*# sourceMappingURL=index.css.map */

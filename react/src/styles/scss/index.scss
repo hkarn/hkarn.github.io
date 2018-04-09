@@ -134,3 +134,9 @@ body > #root > div {
   display: none;
 }
 
+@media only screen and (max-width: 380px) {
+  .NavItemWrappertop {
+    //adjust space confict with social icons for really tiny devises
+      left: 35% !important;
+  }
+}
