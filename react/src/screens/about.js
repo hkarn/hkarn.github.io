@@ -8,8 +8,7 @@ import ComputerPre from '../images/pixabay/computer-1245714_small.jpg'
 
 class About extends Component {
   render () {
-    const {translate} = this.props
-
+    const { translate } = this.props
 
     return (
       <div style={{minHeight: '100vh'}}>
@@ -26,7 +25,7 @@ About.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  translate: getTranslate(state.locale),
+  translate: getTranslate(state.locale)
 })
 
 export default connect(mapStateToProps, null)(About)

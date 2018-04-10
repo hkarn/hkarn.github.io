@@ -5,8 +5,7 @@ const Unregister = () => {
   setTimeout(() => {
     unregister()
     window.location.reload()
-  },500)
+  }, 500)
 }
 
 export default Unregister
-
