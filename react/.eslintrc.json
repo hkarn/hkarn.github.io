@@ -28,6 +28,7 @@
       "no-var": "error",
       "no-tabs": "error",
       "no-multiple-empty-lines": "error",
+      "no-console": [1],
       "jsx-quotes": ["error", "prefer-double"],
       "react/boolean-prop-naming": [2, { "rule": "^(is|has|show)[A-Z]([A-Za-z0-9]?)+" }],
       "react/destructuring-assignment": [2, "always"],

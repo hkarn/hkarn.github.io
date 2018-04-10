@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import store, { history } from './store'
 import MyLoadable from './components/loader/myloadable'
@@ -22,11 +22,11 @@ const App = MyLoadable({
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <Switch>
         <Route path="/projects/*" component={Unregister} />
         <Route path="/social-app-yhjust16/*" component={Unregister} />
         <Route component={App} />
-      </div>
+      </Switch>
     </ConnectedRouter>
   </Provider>,
   target

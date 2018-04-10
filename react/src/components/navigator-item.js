@@ -20,7 +20,9 @@ class Navigator extends Component {
 
     let wrapperStyles = {
       display: 'block',
-      position: 'absolute'
+      position: 'fixed',
+      zIndex: '20',
+      padding: '4px'
     }
     let itemStyles = {
       display: 'flex',
@@ -43,8 +45,7 @@ class Navigator extends Component {
     if (position === 'top') {
       const styles = {
         flexDirection: 'column',
-        height: '65px',
-        width: '210px'
+        height: '56',
 
       }
       const wrapper = {
@@ -57,8 +58,7 @@ class Navigator extends Component {
     } else if (position === 'bottom') {
       const styles = {
         flexDirection: 'column-reverse',
-        height: '65px',
-        width: '210px'
+        height: '56',
       }
       const wrapper = {
         bottom: '0',
@@ -72,8 +72,7 @@ class Navigator extends Component {
         flexDirection: 'column',
         writingMode: 'vertical-lr',
         textOrientation: 'upright',
-        height: '260px',
-        width: '65px'
+        width: '48px'
       }
       const wrapper = {
         left: '0',
@@ -87,11 +86,10 @@ class Navigator extends Component {
         flexDirection: 'column',
         writingMode: 'vertical-rl',
         textOrientation: 'upright',
-        height: '260px',
-        width: '65px'
+        width: '48px'
       }
       const wrapper = {
-        right: '0',
+        right: '2px',
         top: '50%',
         transform: 'translateY(-50%)'
       }
