@@ -1,9 +1,12 @@
-import { unregister } from './registerServiceWorker';
+import { unregister } from './registerServiceWorker'
 
 const Unregister = () => {
-  unregister();
-  window.location.reload();
-};
+  unregister()
+  setTimeout(() => {
+    unregister()
+    window.location.reload()
+  },500)
+}
 
-export default Unregister;
+export default Unregister
 

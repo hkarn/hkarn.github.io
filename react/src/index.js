@@ -5,19 +5,14 @@ import { ConnectedRouter } from 'react-router-redux'
 import { Route, Switch } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import store, { history } from './store'
-import MyLoadable from './components/loader/myloadable'
 
 //Used to exclude subdirectories from service worker, unregisters and refreshes url
 import Unregister from './unregisterServiceWorker'
 
 import 'normalize.css'
 import './styles/css/index.css'
-
+import App from './App';
 const target = document.querySelector('#root')
-
-const App = MyLoadable({
-  loader: () => import('./App')
-})
 
 render(
   <Provider store={store}>

@@ -30,7 +30,6 @@ const translations = {
 
 class Loader extends Component {
   render () {
-    console.log(this.props)
     const {error, pastDelay, timedOut, _defaultLang} = this.props
     let browserLang = 'en'
     let defaultLang = translations['en']

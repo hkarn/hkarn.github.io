@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
@@ -138,8 +138,6 @@ class App extends Component {
 
   componentWillUnmount () {
     WheelReact.clearTimeout()
-    ArrowKeysReact.clearTimeout()
-    SwipeReact.clearTimeout()
     clearTimeout(this.pastDelayTimer)
     clearTimeout(this.pastTimeoutTimer)
   }
@@ -154,7 +152,7 @@ class App extends Component {
           ? (
             <div className="AppLoaded">
               <TopMenu />
-              <div class="PageWrapper">
+              <div className="PageWrapper">
               <NavigatorItem position={'top'} targetLink={'home'} targetText={'home'} isDark={false} />
               <NavigatorItem position={'left'} targetLink={'about'} targetText={'About'} isDark={false} />
               <NavigatorItem position={'right'} targetLink={'showcase'} targetText={'Showcase'} isDark={false} />
