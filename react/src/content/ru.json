@@ -1,8 +1,14 @@
 {
   "locale": "ru_RU",
   "welcome": {
-    "greeting":     "ru",
-    "im":           "ru",
-    "title":        "russian translation incomplete"
+    "greeting":     "Hello!",
+    "im":           "I am",
+    "title":        "Full-stack developer"
+  },
+  "nav": {
+    "about":      "About",
+    "showcase":   "Showcase",
+    "contact":    "Contact",
+    "main":       "Home"
   }
 }

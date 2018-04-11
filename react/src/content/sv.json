@@ -4,5 +4,11 @@
     "greeting":     "Hej!",
     "im":           "Jag är",
     "title":        "Fullstackutvecklare"
+  },
+  "nav": {
+    "about":      "Om mig",
+    "showcase":   "Projekt",
+    "contact":    "Kontakt",
+    "main":       "Hem"
   }
 }

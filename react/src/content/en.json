@@ -4,5 +4,11 @@
     "greeting":     "Hello!",
     "im":           "I am",
     "title":        "Full-stack developer"
+  },
+  "nav": {
+    "about":      "About",
+    "showcase":   "Showcase",
+    "contact":    "Contact",
+    "main":       "Home"
   }
 }

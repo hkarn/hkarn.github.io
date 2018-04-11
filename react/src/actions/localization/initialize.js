@@ -3,8 +3,8 @@ import { initialize } from 'react-localize-redux'
 
 const languages = [
   { name: 'English', code: 'en' },
-  { name: 'Svenska', code: 'sv' },
-  { name: 'Русский', code: 'ru' }
+  { name: 'Svenska', code: 'sv' }
+  // { name: 'Русский', code: 'ru' }
 ]
 
 let browserlanguage = 'en'

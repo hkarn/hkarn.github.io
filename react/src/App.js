@@ -7,7 +7,7 @@ import SwipeReact from 'swipe-react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { getLanguages, getTranslate } from 'react-localize-redux'
 import { Route, Switch } from 'react-router-dom'
-import {localizationInitialize, addTranslations} from './actions'
+import {localizationInitialize, addTranslations, goToPage} from './actions'
 import MyLoadable from './components/loader/myloadable'
 import Loader from './components/loader/loader'
 import TopMenu from './components/topmenu'
@@ -32,40 +32,35 @@ const Showcase = MyLoadable({
 class App extends Component {
   constructor (props) {
     super(props)
-    const {localizationInitialize = () => {}} = this.props
+    const {location, localizationInitialize = () => {}} = props
     localizationInitialize()
+    let path
+    try {
+      path = location.pathname.toLowerCase()
+    } catch (e) {
+      path = '/'
+    }
+    let initalPosition = 'main'
+    if (!/^\/showcase/.test(path)) { initalPosition = 'showcase' }
+    if (!/^\/about/.test(path)) { initalPosition = 'about' }
 
     this.state = {
       isTranslationLoaded: false,
-      loaderPassedDelay: false, 
+      loaderPassedDelay: false,
       loaderTimedOut: false,
-      navTable: {
-        main: {
-          up: false,
-          left: {text: 'About', link: '/about'},
-          right: {text: 'Showcase', link: '/showcase'},
-          bottom: {text: 'Contact', link: '/contact'}
-        },
-        showcase: {
-          up: false,
-          left: {text: 'Home', link: '/'},
-          right: {text: 'About', link: '/about'},
-          bottom: {text: 'Contact', link: '/contact'}
-        },
-        about: {
-          up: false,
-          left: {text: 'Showcase', link: '/showcase'},
-          right: {text: 'Home', link: '/'},
-          bottom: {text: 'Contact', link: '/contact'}
-        },
-        contact: {
-          up: {text: 'Home', link: '/'},
-          left: {text: 'About', link: '/about'},
-          right: {text: 'Showcase', link: '/showcase'},
-          bottom: false
-        }
-      }
+      pagePosition: initalPosition,
+      nav: {
+        left: {text: '', link: ''},
+        right: {text: '', link: ''},
+        bottom: {text: '', link: ''},
+        top: {text: '', link: ''}
+      },
+      isDark: false
     }
+    this.state = {...this.NavSwitch(path, initalPosition)}
+
+    this.hotNavTimer = setTimeout(false)
+    this.hotNavLock = false
 
     // Translation loading timers
     this.pastDelayTimer = setTimeout(() => {
@@ -78,61 +73,85 @@ class App extends Component {
     }, 15000)
 
     WheelReact.config({
-      left: () => {
-        console.log('wheel left detected.')
-      },
-      right: () => {
-        console.log('wheel right detected.')
-      },
-      up: () => {
-        console.log('wheel up detected.')
-      },
-      down: () => {
-        console.log('wheel down detected.')
-      }
+      left: () => this.navigateLeft(false),
+      right: () => this.navigateRight(false),
+      up: () => this.navigateDown(false), // wheel-react uses inverted scrolling??
+      down: () => this.navigateUp(false) // wheel-react uses inverted scrolling??
     })
     SwipeReact.config({
-      left: () => {
-        console.log('Swipe left detected.')
-      },
-      right: () => {
-        console.log('Swipe right detected.')
-      },
-      up: () => {
-        console.log('Swipe up detected.')
-      },
-      down: () => {
-        console.log('Swipe down detected.')
-      }
+      left: () => this.navigateLeft(false),
+      right: () => this.navigateRight(false),
+      up: () => this.navigateUp(false),
+      down: () => this.navigateDown(false)
     })
     ArrowKeysReact.config({
-      left: () => {
-        console.log('left key detected.')
-      },
-      right: () => {
-        console.log('right key detected.')
-      },
-      up: () => {
-        console.log('up key detected.')
-      },
-      down: () => {
-        console.log('down key detected.')
-      }
+      left: () => this.navigateLeft(true),
+      right: () => this.navigateRight(true),
+      up: () => this.navigateUp(true),
+      down: () => this.navigateDown(true)
     })
+  }
+
+  navigateLeft = (override) => {
+    this.hotNavGo('left', override)
+  }
+
+  navigateRight = (override) => {
+    this.hotNavGo('right', override)
+  }
+
+  navigateUp = (override) => {
+    this.hotNavGo('top', override)
+  }
+
+  navigateDown = (override) => {
+    this.hotNavGo('bottom', override)
+  }
+
+  hotNavGo = (loc, override) => {
+    if (override || !this.hotNavLock) {
+      const {nav} = this.state
+      const {goToPage} = this.props
+      if (nav[loc] !== false) {
+        goToPage(nav[loc].link)
+        this.hotNavLock = true
+        this.hotNavTimer = setTimeout(() => {
+          this.hotNavLock = false
+          clearTimeout(this.hotNavTimer)
+        }, 1000)
+      }
+    }
   }
 
   componentDidMount () {
     this.topWrapper.focus()
-    Showcase.preload()
-    About.preload()
-    Contact.preload()
+    const preLoader = setTimeout(() => {
+      Showcase.preload()
+      About.preload()
+      Contact.preload()
+      MainScreen.preload()
+      clearTimeout(preLoader)
+    }, 2000)
   }
 
   componentWillReceiveProps (nextProps) {
-    const {addTranslations, languages = []} = this.props
+    const {addTranslations, languages = [], location} = this.props
     if (typeof nextProps.languages === 'object' && nextProps.languages.length > 0 && nextProps.languages !== languages) {
       addTranslations()
       this.setState({isTranslationLoaded: true})
+    }
+    let path
+    let newpath
+    try {
+      newpath = nextProps.location.pathname
+      path = location.pathname
+    } catch (e) {
+      path = true
+      newpath = false
+    }
+    if (path !== newpath) {
+      const {pagePosition} = this.state
+      this.setState(this.NavSwitch(newpath, pagePosition))
     }
   }
 
@@ -140,11 +159,79 @@ class App extends Component {
     WheelReact.clearTimeout()
     clearTimeout(this.pastDelayTimer)
     clearTimeout(this.pastTimeoutTimer)
+    clearTimeout(this.hotNavTimer)
+  }
+
+  NavSwitch = (path, pagePosition) => {
+    const pathLower = path.toLowerCase()
+    if (/^\/showcase/.test(pathLower)) {
+      return {nav: {
+        left: {text: 'main', link: '/'},
+        right: {text: 'about', link: '/about'},
+        bottom: {text: 'contact', link: '/contact'},
+        top: false
+      },
+      pagePosition: 'showcase',
+      isDark: false}
+    } else if (/^\/about/.test(pathLower)) {
+      return {nav: {
+        left: {text: 'showcase', link: '/showcase'},
+        right: {text: 'main', link: '/'},
+        bottom: {text: 'contact', link: '/contact'},
+        top: false
+      },
+      pagePosition: 'about',
+      isDark: false}
+    } else if (/^\/contact/.test(pathLower)) {
+      const navObj = {nav: {
+        bottom: false,
+        top: {text: 'main', link: '/'}
+      },
+      isDark: true}
+      if (pagePosition === 'showcase') {
+        navObj.nav.left = {text: 'main', link: '/'}
+        navObj.nav.right = {text: 'about', link: '/about'}
+        return navObj
+      } else if (pagePosition === 'about') {
+        navObj.nav.left = {text: 'showcase', link: '/showcase'}
+        navObj.nav.right = {text: 'main', link: '/'}
+        return navObj
+      } else {
+        navObj.nav.left = {text: 'about', link: '/about'}
+        navObj.nav.right = {text: 'showcase', link: '/showcase'}
+        return navObj
+      }
+    } else {
+      return {nav: {
+        left: {text: 'about', link: '/about'},
+        right: {text: 'showcase', link: '/showcase'},
+        bottom: {text: 'contact', link: '/contact'},
+        top: false
+      },
+      pagePosition: 'main',
+      isDark: false}
+    }
   }
 
   render () {
-    const {isTranslationLoaded = false, loaderPassedDelay = false, loaderTimedOut = false} = this.state
+    const {isTranslationLoaded = false, loaderPassedDelay = false, loaderTimedOut = false, nav, isDark = false} = this.state
     const {translate} = this.props
+    const navText = isTranslationLoaded ? {
+      about: translate('nav.about'),
+      main: translate('nav.main'),
+      contact: translate('nav.contact'),
+      showcase: translate('nav.showcase')
+    } : {
+      about: 'About',
+      main: 'Home',
+      contact: 'Contact',
+      showcase: 'Showcase'
+    }
+
+    const NavigationTop = nav.top ? <NavigatorItem position={'top'} targetLink={nav.top.link} targetText={navText[nav.top.text]} isDark={isDark} /> : null
+    const NavigationBottom = nav.bottom ? <NavigatorItem position={'bottom'} targetLink={nav.bottom.link} targetText={navText[nav.bottom.text]} isDark={isDark} /> : null
+    const NavigationLeft = nav.left ? <NavigatorItem position={'left'} targetLink={nav.left.link} targetText={navText[nav.left.text]} isDark={isDark} /> : null
+    const NavigationRight = nav.right ? <NavigatorItem position={'right'} targetLink={nav.right.link} targetText={navText[nav.right.text]} isDark={isDark} /> : null
 
     return (
       <div className="App" {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div }} >
@@ -153,16 +240,16 @@ class App extends Component {
             <div className="AppLoaded">
               <TopMenu />
               <div className="PageWrapper">
-              <NavigatorItem position={'top'} targetLink={'home'} targetText={'home'} isDark={false} />
-              <NavigatorItem position={'left'} targetLink={'about'} targetText={'About'} isDark={false} />
-              <NavigatorItem position={'right'} targetLink={'showcase'} targetText={'Showcase'} isDark={false} />
-              <NavigatorItem position={'bottom'} targetLink={'contact'} targetText={'Contact'} isDark={false} />
-              <Switch>
-                <Route path="/about*" component={About} />
-                <Route path="/contact*" component={Contact} />
-                <Route path="/showcase*" component={Showcase} />
-                <Route component={MainScreen} />
-              </Switch>
+                {NavigationTop}
+                {NavigationBottom}
+                {NavigationLeft}
+                {NavigationRight}
+                <Switch>
+                  <Route path="/about*" component={About} />
+                  <Route path="/contact*" component={Contact} />
+                  <Route path="/showcase*" component={Showcase} />
+                  <Route component={MainScreen} />
+                </Switch>
               </div>
             </div>
           )
@@ -177,7 +264,9 @@ App.propTypes = {
   addTranslations: PropTypes.func,
   languages: PropTypes.array,
   translate: PropTypes.func,
-  currentLanguage: PropTypes.string
+  currentLanguage: PropTypes.string,
+  location: PropTypes.object,
+  goToPage: PropTypes.func
 }
 
 const mapStateToProps = state => ({
@@ -187,7 +276,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   localizationInitialize,
-  addTranslations
+  addTranslations,
+  goToPage
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

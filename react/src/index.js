@@ -6,12 +6,12 @@ import { Route, Switch } from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker'
 import store, { history } from './store'
 
-//Used to exclude subdirectories from service worker, unregisters and refreshes url
+// Used to exclude subdirectories from service worker, unregisters and refreshes url
 import Unregister from './unregisterServiceWorker'
 
 import 'normalize.css'
 import './styles/css/index.css'
-import App from './App';
+import App from './App'
 const target = document.querySelector('#root')
 
 render(

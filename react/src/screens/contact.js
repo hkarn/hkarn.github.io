@@ -11,10 +11,13 @@ class Contact extends Component {
     const {translate} = this.props
 
     return (
-      <div style={{minHeight: '100vh'}}>
-        <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0.6} />
-CONTACT
-
+      <div>
+        <div style={{filter: 'opacity(25%)', position: 'fixed', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '100%', zIndex: '-2'}}>
+          <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0} />
+        </div>
+        <main className="MainScreenWrapper">
+          contact
+        </main>
       </div>
     )
   }

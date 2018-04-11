@@ -6,7 +6,7 @@ export function addTranslations () {
     dispatch(addTranslationForLanguage(en, 'en'))
     const sv = require('../../content/sv.json')
     dispatch(addTranslationForLanguage(sv, 'sv'))
-    const ru = require('../../content/ru.json')
-    dispatch(addTranslationForLanguage(ru, 'ru'))
+    // const ru = require('../../content/ru.json')
+    // dispatch(addTranslationForLanguage(ru, 'ru'))
   }
 }
