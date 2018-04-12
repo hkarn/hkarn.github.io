@@ -7,7 +7,7 @@ import SwipeReact from 'swipe-react'
 import ArrowKeysReact from 'arrow-keys-react'
 import { getLanguages, getTranslate } from 'react-localize-redux'
 import { Route, Switch } from 'react-router-dom'
-import {localizationInitialize, addTranslations, goToPage} from './actions'
+import {localizationInitialize, addTranslations, goToPage, setLanguageRequestedBySearch} from './actions'
 import MyLoadable from './components/loader/myloadable'
 import Loader from './components/loader/loader'
 import TopMenu from './components/topmenu'
@@ -34,6 +34,7 @@ class App extends Component {
     super(props)
     const {location, localizationInitialize = () => {}} = props
     localizationInitialize()
+
     let path
     try {
       path = location.pathname.toLowerCase()
@@ -44,7 +45,11 @@ class App extends Component {
     if (!/^\/showcase/.test(path)) { initalPosition = 'showcase' }
     if (!/^\/about/.test(path)) { initalPosition = 'about' }
 
+    const d = this.getInnerDimensions()
+
     this.state = {
+      innerHeight: d.height,
+      innerWidth: d.width,
       isTranslationLoaded: false,
       loaderPassedDelay: false,
       loaderTimedOut: false,
@@ -75,14 +80,14 @@ class App extends Component {
     WheelReact.config({
       left: () => this.navigateLeft(false),
       right: () => this.navigateRight(false),
-      up: () => this.navigateDown(false), // wheel-react uses inverted scrolling??
-      down: () => this.navigateUp(false) // wheel-react uses inverted scrolling??
+      up: () => this.navigateDown(false), // INVERTED
+      down: () => this.navigateUp(false) // INVERTED
     })
     SwipeReact.config({
-      left: () => this.navigateLeft(false),
-      right: () => this.navigateRight(false),
-      up: () => this.navigateUp(false),
-      down: () => this.navigateDown(false)
+      left: () => this.navigateRight(false), // INVERTED
+      right: () => this.navigateLeft(false), // INVERTED
+      up: () => this.navigateDown(false), // INVERTED
+      down: () => this.navigateUp(false) // INVERTED
     })
     ArrowKeysReact.config({
       left: () => this.navigateLeft(true),
@@ -90,6 +95,21 @@ class App extends Component {
       up: () => this.navigateUp(true),
       down: () => this.navigateDown(true)
     })
+
+    this.dimensionCheck = setInterval(() => {
+      const d = this.getInnerDimensions()
+      this.setState({innerHeight: d.height, innerWidth: d.width})
+    }, 6000)
+  }
+
+  getInnerDimensions = () => {
+    const body = document.body
+    const html = document.documentElement
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight,
+      html.clientHeight, html.scrollHeight, html.offsetHeight)
+    const docWidth = Math.max(body.scrollWidth, body.offsetWidth,
+      html.clientWidth, html.scrollWidth, html.offsetWidth)
+    return {height: docHeight, width: docWidth}
   }
 
   navigateLeft = (override) => {
@@ -139,6 +159,18 @@ class App extends Component {
     if (typeof nextProps.languages === 'object' && nextProps.languages.length > 0 && nextProps.languages !== languages) {
       addTranslations()
       this.setState({isTranslationLoaded: true})
+      const {setLanguageRequestedBySearch} = this.props
+      try {
+        const lang = location.search.match(/lang=\w{1,3}/)[0].split('lang=').pop()
+        const langCodes = nextProps.languages.map(item => item.code)
+        if (langCodes.includes(lang)) {
+          setLanguageRequestedBySearch(lang)
+        } else {
+          setLanguageRequestedBySearch(false)
+        }
+      } catch (e) {
+        setLanguageRequestedBySearch(false)
+      }
     }
     let path
     let newpath
@@ -160,6 +192,7 @@ class App extends Component {
     clearTimeout(this.pastDelayTimer)
     clearTimeout(this.pastTimeoutTimer)
     clearTimeout(this.hotNavTimer)
+    clearInterval(this.dimensionCheck)
   }
 
   NavSwitch = (path, pagePosition) => {
@@ -266,18 +299,21 @@ App.propTypes = {
   translate: PropTypes.func,
   currentLanguage: PropTypes.string,
   location: PropTypes.object,
-  goToPage: PropTypes.func
+  goToPage: PropTypes.func,
+  setLanguageRequestedBySearch: PropTypes.func
 }
 
 const mapStateToProps = state => ({
   languages: getLanguages(state.locale),
-  translate: getTranslate(state.locale)
+  translate: getTranslate(state.locale),
+  location: state.routing.location
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   localizationInitialize,
   addTranslations,
-  goToPage
+  goToPage,
+  setLanguageRequestedBySearch
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

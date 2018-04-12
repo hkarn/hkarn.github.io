@@ -1,44 +1,49 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { routerMiddleware } from 'react-router-redux';
-import thunk from 'redux-thunk';
-import createHistory from 'history/createBrowserHistory';
-import rootReducer from '../modules';
+import { createStore, applyMiddleware, compose } from 'redux'
+import { routerMiddleware } from 'react-router-redux'
+import thunk from 'redux-thunk'
+import createHistory from 'history/createBrowserHistory'
+import rootReducer from '../modules'
 
-
-export const history = createHistory();
+export const history = createHistory()
 
 const initialState = {
-};
+  requestedLanguage: false,
+  animations: {
+    main: true,
+    about: true,
+    showcase: true,
+    contact: true
+  }
+}
 
-
-const enhancers = [];
+const enhancers = []
 const middleware = [
   thunk,
   routerMiddleware(history)
-];
+]
 
 /* eslint-disable no-undef */
-const environment = process.env.NODE_ENV || 'development';
+const environment = process.env.NODE_ENV || 'development'
 /* eslint-enable no-undef */
 if (environment === 'development') {
   /* eslint-disable no-console */
-  console.log('DEV MODE! Loading devtools...');
+  console.log('DEV MODE! Loading devtools...')
   /* eslint-enable no-console */
-  const devToolsExtension = window.window.__REDUX_DEVTOOLS_EXTENSION__;
+  const devToolsExtension = window.window.__REDUX_DEVTOOLS_EXTENSION__
   if (typeof devToolsExtension === 'function') {
-    enhancers.push(devToolsExtension());
+    enhancers.push(devToolsExtension())
   }
 }
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
   ...enhancers
-);
+)
 
 const store = createStore(
   rootReducer,
   initialState,
   composedEnhancers
-);
+)
 
-export default store;
+export default store

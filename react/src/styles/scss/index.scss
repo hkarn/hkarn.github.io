@@ -1,4 +1,4 @@
-@import './_variables.scss';
+@import 'variables.scss';
 
 html, body {
   overflow: hidden;
@@ -8,6 +8,22 @@ html, body {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .invertColors {
@@ -114,6 +130,9 @@ html, body {
         outline: 0;
         }
       }
+      .SelectedLanguageItem {
+          font-style: italic;          
+      }
     }
 
   }
@@ -129,11 +148,14 @@ html, body {
   font-size: 2.85vw;
   padding-top: 15vh;
   padding-bottom: 35px;
-  animation: fall 1.2s ease-in;
-  animation-iteration-count: 1;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.MainScreenWrapperAnimated {
+  animation: fall 1.2s ease-in;
+  animation-iteration-count: 1;
 }
 
 .NavItemWrapper {
