@@ -13,6 +13,7 @@ import Loader from './components/loader/loader'
 import TopMenu from './components/topmenu'
 import NavigatorItem from './components/navigator-item'
 
+
 const MainScreen = MyLoadable({
   loader: () => import('./screens/main')
 })

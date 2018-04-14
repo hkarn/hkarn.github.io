@@ -3,9 +3,10 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L]
 
-RewriteCond %{REQUEST_URI} !^/[^/]*\.(png|xml|txt|json|js|css|ico)$
+RewriteCond %{REQUEST_URI} !^/[^/]*\.(png|xml|txt|json|js|css|ico|jpg|jpeg|svg|map)$
 RewriteCond %{REQUEST_URI} !^/google[^/]*.html
 RewriteCond %{REQUEST_URI} !^/projects/
+RewriteCond %{REQUEST_URI} !^/api/
 RewriteCond %{REQUEST_URI} !^/static/
 RewriteRule . index.html [L,QSA]
 </IfModule>
@@ -19,5 +20,5 @@ Header set Cache-Control "max-age=20"
 </FilesMatch>  
 
 <FilesMatch ".(flv|swf|ico|gif|jpg|jpeg|png)$">  
-Header set Cache-Control "max-age=30"  
+Header set Cache-Control "max-age=200"  
 </FilesMatch>  

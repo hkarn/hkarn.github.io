@@ -6,6 +6,7 @@ import IronImage from '../components/ironimage'
 import Computer from '../images/pixabay/computer-1245714_1920.jpg'
 import ComputerPre from '../images/pixabay/computer-1245714_small.jpg'
 import PageHead from '../components/page-head'
+import ContactForm from '../components/contactform'
 
 class Contact extends Component {
   render () {
@@ -22,6 +23,7 @@ class Contact extends Component {
         </div>
         <main className="MainScreenWrapper">
           contact
+          <ContactForm />
         </main>
       </div>
     )

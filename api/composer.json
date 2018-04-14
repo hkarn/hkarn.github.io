@@ -1,0 +1,15 @@
+{
+    "name": "hka/mail-script-contact-form",
+    "description": "Sendmail script for contact form",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Håkan Kindström Arnoldson",
+            "email": "hakan@arnoldson.net"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.0",
+        "league/oauth2-client": "^2.3"
+    }
+}

@@ -69,3 +69,8 @@ yarn-error.log*
 react/src/styles/css/
 react/src/styles/css/**
 
+config.js
+config.php
+
+api/vendor/
+
