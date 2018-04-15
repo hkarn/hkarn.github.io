@@ -20,8 +20,10 @@ class Showcase extends Component {
         <div style={{position: 'fixed', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '100%', zIndex: '-2'}}>
           <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0.6} />
         </div>
-        <main className="MainScreenWrapper">
+        <main className="ScreenWrapper ShowcaseScreenWrapper">
           showcase
+          <h1>add some wide content horizontal scroll/hotnav interference test</h1>
+          <div style={{backgroundColor: 'orange', width: '6000px'}}>Hello</div>
         </main>
       </div>
     )

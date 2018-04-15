@@ -33,7 +33,7 @@ class MainScreen extends Component {
         <div style={{position: 'fixed', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '100%', zIndex: '-2'}}>
           <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0.6} />
         </div>
-        <main className={'MainScreenWrapper ' + animationClass}>
+        <main className={'ScreenWrapper MainScreenWrapper ' + animationClass}>
           <h3>{ translate('welcome.greeting') }</h3>
           <h1 style={{margin: '20px  10px', fontSize: '1.6em'}}>{ translate('welcome.im') } Håkan Arnoldson</h1>
           <h2 style={{margin: '20px 10px'}}>{ translate('welcome.title') }</h2>

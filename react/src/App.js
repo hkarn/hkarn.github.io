@@ -12,7 +12,7 @@ import MyLoadable from './components/loader/myloadable'
 import Loader from './components/loader/loader'
 import TopMenu from './components/topmenu'
 import NavigatorItem from './components/navigator-item'
-
+import ReactDOM from 'react-dom'
 
 const MainScreen = MyLoadable({
   loader: () => import('./screens/main')
@@ -46,11 +46,7 @@ class App extends Component {
     if (!/^\/showcase/.test(path)) { initalPosition = 'showcase' }
     if (!/^\/about/.test(path)) { initalPosition = 'about' }
 
-    const d = this.getInnerDimensions()
-
     this.state = {
-      innerHeight: d.height,
-      innerWidth: d.width,
       isTranslationLoaded: false,
       loaderPassedDelay: false,
       loaderTimedOut: false,
@@ -96,37 +92,22 @@ class App extends Component {
       up: () => this.navigateUp(true),
       down: () => this.navigateDown(true)
     })
-
-    this.dimensionCheck = setInterval(() => {
-      const d = this.getInnerDimensions()
-      this.setState({innerHeight: d.height, innerWidth: d.width})
-    }, 6000)
-  }
-
-  getInnerDimensions = () => {
-    const body = document.body
-    const html = document.documentElement
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight,
-      html.clientHeight, html.scrollHeight, html.offsetHeight)
-    const docWidth = Math.max(body.scrollWidth, body.offsetWidth,
-      html.clientWidth, html.scrollWidth, html.offsetWidth)
-    return {height: docHeight, width: docWidth}
   }
 
   navigateLeft = (override) => {
-    this.hotNavGo('left', override)
+    if (override || this.scrollCheck('left')) { this.hotNavGo('left', override) }
   }
 
   navigateRight = (override) => {
-    this.hotNavGo('right', override)
+    if (override || this.scrollCheck('right')) { this.hotNavGo('right', override) }
   }
 
   navigateUp = (override) => {
-    this.hotNavGo('top', override)
+    if (override || this.scrollCheck('top')) { this.hotNavGo('top', override) }
   }
 
   navigateDown = (override) => {
-    this.hotNavGo('bottom', override)
+    if (override || this.scrollCheck('bottom')) { this.hotNavGo('bottom', override) }
   }
 
   hotNavGo = (loc, override) => {
@@ -141,6 +122,19 @@ class App extends Component {
           clearTimeout(this.hotNavTimer)
         }, 1000)
       }
+    }
+  }
+
+  scrollCheck = (border) => {
+    const c = ReactDOM.findDOMNode(this.PageWrapper)
+    if (border === 'bottom') {
+      if (c.scrollTop + c.offsetHeight >= c.scrollHeight - 1) { return true } else { return false }
+    } else if (border === 'left') {
+      if (c.scrollLeft <= 1) { return true } else { return false }
+    } else if (border === 'right') {
+      if (c.scrollLeft + c.offsetWidth >= c.scrollWidth - 1) { return true } else { return false }
+    } else {
+      if (c.scrollTop <= 1) { return true } else { return false }
     }
   }
 
@@ -218,21 +212,23 @@ class App extends Component {
       isDark: false}
     } else if (/^\/contact/.test(pathLower)) {
       const navObj = {nav: {
-        bottom: false,
-        top: {text: 'main', link: '/'}
+        bottom: false
       },
       isDark: true}
       if (pagePosition === 'showcase') {
         navObj.nav.left = {text: 'main', link: '/'}
         navObj.nav.right = {text: 'about', link: '/about'}
+        navObj.nav.top = {text: 'showcase', link: '/showcase'}
         return navObj
       } else if (pagePosition === 'about') {
         navObj.nav.left = {text: 'showcase', link: '/showcase'}
         navObj.nav.right = {text: 'main', link: '/'}
+        navObj.nav.top = {text: 'about', link: '/about'}
         return navObj
       } else {
         navObj.nav.left = {text: 'about', link: '/about'}
         navObj.nav.right = {text: 'showcase', link: '/showcase'}
+        navObj.nav.top = {text: 'main', link: '/'}
         return navObj
       }
     } else {
@@ -267,13 +263,15 @@ class App extends Component {
     const NavigationLeft = nav.left ? <NavigatorItem position={'left'} targetLink={nav.left.link} targetText={navText[nav.left.text]} isDark={isDark} /> : null
     const NavigationRight = nav.right ? <NavigatorItem position={'right'} targetLink={nav.right.link} targetText={navText[nav.right.text]} isDark={isDark} /> : null
 
+
+
     return (
       <div className="App" {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div }} >
         {isTranslationLoaded
           ? (
             <div className="AppLoaded">
               <TopMenu />
-              <div className="PageWrapper">
+              <div className="PageWrapper" ref={ref => { this.PageWrapper = ref }}>
                 {NavigationTop}
                 {NavigationBottom}
                 {NavigationLeft}

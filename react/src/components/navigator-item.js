@@ -45,7 +45,7 @@ class Navigator extends Component {
     if (position === 'top') {
       const styles = {
         flexDirection: 'column',
-        height: '56',
+        height: '56'
 
       }
       const wrapper = {
@@ -58,7 +58,7 @@ class Navigator extends Component {
     } else if (position === 'bottom') {
       const styles = {
         flexDirection: 'column-reverse',
-        height: '56',
+        height: '56'
       }
       const wrapper = {
         bottom: '0',
