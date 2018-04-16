@@ -13,6 +13,7 @@ import Loader from './components/loader/loader'
 import TopMenu from './components/topmenu'
 import NavigatorItem from './components/navigator-item'
 import ReactDOM from 'react-dom'
+import IronImageBackground from './components/ironimagebackground'
 
 const MainScreen = MyLoadable({
   loader: () => import('./screens/main')
@@ -57,7 +58,8 @@ class App extends Component {
         bottom: {text: '', link: ''},
         top: {text: '', link: ''}
       },
-      isDark: false
+      isDark: false,
+      scroll: {}
     }
     this.state = {...this.NavSwitch(path, initalPosition)}
 
@@ -177,6 +179,26 @@ class App extends Component {
       newpath = false
     }
     if (path !== newpath) {
+      const {scroll = {}} = this.state
+      let x
+      let y
+      if (typeof this.PageWrapper.scrollLeft !== 'number') { x = 0 } else { x = this.PageWrapper.scrollLeft }
+      if (typeof this.PageWrapper.scrollTop !== 'number') { y = 0 } else { y = this.PageWrapper.scrollTop }
+      try {
+        if (typeof scroll[newpath] !== 'undefined' && (scroll[newpath].x !== 0 || scroll[newpath].y !== 0)) {
+          const moveXscroll = setTimeout(() => { try { this.PageWrapper.scrollLeft = scroll[newpath].x } catch (e) { /* failed reset */ } finally { clearTimeout(moveXscroll) } }, 500)
+          const moveYscroll = setTimeout(() => { try { this.PageWrapper.scrollTop = scroll[newpath].y } catch (e) { /* failed reset */ } finally { clearTimeout(moveYscroll) } }, 500)
+          /* This is a pray and hope solution that the child have mounted before the timer expires, but works well enough for a non essential feature for the moment
+             I initially tried to do this by sending the PageWrapper ref as a prop to the screen and solve scrolling restire inside those, possibly saving scroll state in redux
+             However that made the screen render more often and the animations glitch so this will do for now. */
+        }
+      } catch (e) {
+        // scroll restore not possible, ignore
+      } finally {
+        // set scroll restore
+        scroll[path] = {x: x, y: y}
+        this.setState({scroll})
+      }
       const {pagePosition} = this.state
       this.setState(this.NavSwitch(newpath, pagePosition))
     }
@@ -263,19 +285,19 @@ class App extends Component {
     const NavigationLeft = nav.left ? <NavigatorItem position={'left'} targetLink={nav.left.link} targetText={navText[nav.left.text]} isDark={isDark} /> : null
     const NavigationRight = nav.right ? <NavigatorItem position={'right'} targetLink={nav.right.link} targetText={navText[nav.right.text]} isDark={isDark} /> : null
 
-
-
     return (
       <div className="App" {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div }} >
         {isTranslationLoaded
           ? (
             <div className="AppLoaded">
               <TopMenu />
+              <IronImageBackground page={'main'} darken={0} />
+              {NavigationTop}
+              {NavigationBottom}
+              {NavigationLeft}
+              {NavigationRight}
               <div className="PageWrapper" ref={ref => { this.PageWrapper = ref }}>
-                {NavigationTop}
-                {NavigationBottom}
-                {NavigationLeft}
-                {NavigationRight}
+
                 <Switch>
                   <Route path="/about*" component={About} />
                   <Route path="/contact*" component={Contact} />

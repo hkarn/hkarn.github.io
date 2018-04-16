@@ -49,13 +49,11 @@ html, body {
 
 .PageWrapper {
   top: $mainMenuHeight;
+  bottom: 64px;
   left: 0;
-  position: absolute;
+  position: fixed;
   padding: 5px 57px;
   width: 100%;
-  height: calc(100% - 108px);
-  width: 100%;
-  height: calc(100vh - 108px);
   width: 100vw;
   overflow: auto;
 }

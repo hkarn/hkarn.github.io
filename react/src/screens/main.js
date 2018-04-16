@@ -19,6 +19,7 @@ class MainScreen extends Component {
   }
 
   render () {
+    console.log(this.props)
     const { translate, showAnimation } = this.props
     let animationClass = ''
     if (showAnimation) {
@@ -30,9 +31,6 @@ class MainScreen extends Component {
           title="Arnoldson.online - Welcome"
           description="Portfolio site for Håkan Kindström Arnoldson, full-stack developer"
         />
-        <div style={{position: 'fixed', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '100%', zIndex: '-2'}}>
-          <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0.6} />
-        </div>
         <main className={'ScreenWrapper MainScreenWrapper ' + animationClass}>
           <h3>{ translate('welcome.greeting') }</h3>
           <h1 style={{margin: '20px  10px', fontSize: '1.6em'}}>{ translate('welcome.im') } Håkan Arnoldson</h1>

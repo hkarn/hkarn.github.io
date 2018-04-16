@@ -18,9 +18,7 @@ class Contact extends Component {
           title="Arnoldson.online - Welcome"
           description="Portfolio site for Håkan Kindström Arnoldson, full-stack developer"
         />
-        <div style={{filter: 'opacity(25%)', position: 'fixed', top: '0', left: '0', bottom: '0', right: '0', width: '100%', height: '100%', zIndex: '-2'}}>
-          <IronImage srcPreload={ComputerPre} srcLoaded={Computer} darken={0} />
-        </div>
+
         <main className="ScreenWrapper ContactScreenWrapper">
           contact
           <ContactForm />
