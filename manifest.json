@@ -41,6 +41,8 @@
    ],
   "start_url": "./index.html",
   "display": "standalone",
+  "display": "fullscreen",
+  "orientation": "portrait",
   "theme_color": "#ffffff",
   "background_color": "#151515"
 }
