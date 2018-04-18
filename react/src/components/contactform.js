@@ -105,6 +105,7 @@ class ContactForm extends Component {
             type="text"
             value={state.name}
             onChange={event => this.setState({ name: event.target.value })}
+            required
           />
           {!state.validation.name ? <label htmlFor="name-input" style={style.name}>You must enter a name.</label> : null}
           <input
@@ -115,6 +116,7 @@ class ContactForm extends Component {
             type="email"
             value={state.email}
             onChange={event => this.setState({ email: event.target.value })}
+            required
           />
           {!state.validation.email ? <label htmlFor="email-input" style={style.email}>You must enter an email.</label> : null}
           <textarea
@@ -124,6 +126,7 @@ class ContactForm extends Component {
             placeholder="Your message..."
             onChange={event => this.setState({ message: event.target.value })}
             value={state.message}
+            required
           />
           {!state.validation.message ? <label htmlFor="text-input" style={style.message}>You must enter a message.</label> : null}
           <input type="submit" value="Submit" disabled={state.isSending} />
