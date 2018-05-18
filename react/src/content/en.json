@@ -1,14 +1,31 @@
 {
   "locale": "en_GB",
   "welcome": {
+    "pageTitle":    "Welcome",
     "greeting":     "Hello!",
     "im":           "I am",
     "title":        "Full-stack developer"
+  },
+  "page": {
+    "desc":       "Portfolio site for Håkan Kindström Arnoldson, full-stack developer"
   },
   "nav": {
     "about":      "About",
     "showcase":   "Showcase",
     "contact":    "Contact",
     "main":       "Home"
+  },
+  "showcase": {
+    "pageTitle":  "Showcase",
+    "heading":    "Showcase"
+
+  },
+  "contact": {
+    "pageTitle":  "Contact",
+    "heading":    "Contact"
+  },
+  "about": {
+    "pageTitle":  "About",
+    "heading":    "About"
   }
 }

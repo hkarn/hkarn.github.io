@@ -45,7 +45,7 @@ class TopMenu extends Component {
 
   render () {
     const {showLanguageList} = this.state
-    const {translate} = this.props
+    const {translate, isDark} = this.props
 
     const iconStyle = {
       display: 'inline-block',
@@ -53,10 +53,12 @@ class TopMenu extends Component {
       fontSize: '2.1em'
     }
 
+    const textColor = isDark ? {color: 'black'} : {color: 'white'}
+
     const locale = translate('locale')
 
     return (
-      <nav className="TopMenuWrapper">
+      <nav className="TopMenuWrapper" style={textColor}>
         <ul style={{display: 'flex', justifyContent: 'flex-end', alignContent: 'center', alignItems: 'center', padding: '3px', listStyle: 'none'}}>
           <li title="Language Selector" aria-label="Language selector" className={'LanguageSelector ' + (showLanguageList ? 'open' : '')} tabIndex="2" onFocus={() => this.toggleLanguageList(true)} onMouseEnter={() => this.toggleLanguageList(true)} onMouseLeave={() => this.toggleLanguageList(false)} onClick={() => this.toggleLanguageList(null, true)}>
             <FontAwesomeIcon icon={faLanguage} title="Change language" />
@@ -75,7 +77,8 @@ class TopMenu extends Component {
 }
 
 TopMenu.propTypes = {
-  translate: PropTypes.func
+  translate: PropTypes.func,
+  isDark: PropTypes.bool
 }
 
 const mapStateToProps = state => ({

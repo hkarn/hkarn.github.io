@@ -22,18 +22,21 @@ class IronImage extends Component {
         `background-image: url('${srcLoaded}')`
       )
       this.ironImageHd.classList.add('iron-image-fade-in')
-    };
+    }
   }
 
   render () {
     const { srcPreload, darken = 0 } = this.props
 
+    const baseBg = darken < 0 ? 255 : 0
+    const darkenUse = Math.abs(darken)
+
     return (
-      <div className="iron-image-container" style={{background: `linear-gradient(rgba(0, 0, 0, ${darken}),rgba(0, 0, 0, ${darken}))`}}>
+      <div className="iron-image-container" style={{background: `linear-gradient(rgba(${baseBg}, ${baseBg}, ${baseBg}, ${darkenUse}),rgba(${baseBg}, ${baseBg}, ${baseBg}, ${darkenUse}))`}}>
 
         <div
           className="iron-image-loaded"
-          ref={imageLoadedElem => this.ironImageHd = imageLoadedElem} />
+          ref={imageLoadedElem => { this.ironImageHd = imageLoadedElem }} />
         <div
           className="iron-image-preload"
           style={{ backgroundImage: `url('${srcPreload}')` }} />

@@ -85,8 +85,9 @@ class ContactForm extends Component {
     if (!state.validation.email) { style.email = {color: 'red'} }
     if (!state.validation.message) { style.message = {color: 'red'} }
 
-    return (<div>
+    return (<div style={{width: '100%'}}>
       <form onSubmit={this.onSubmit} disabled={state.isSending}>
+        <h2 className="heading">{props.translate('contact.heading')} Håkan</h2>
         <fieldset disabled={state.isSending}>
           <input
             id="urlfield"

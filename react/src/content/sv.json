@@ -1,14 +1,31 @@
 {
   "locale": "sv_SE",
   "welcome": {
+    "pageTitle":    "Välkommen!",
     "greeting":     "Hej!",
     "im":           "Jag är",
     "title":        "Fullstackutvecklare"
+  },
+  "page": {
+    "desc":       "Håkan Kindström Arnoldsons portfölj, full-stack utvecklare"
   },
   "nav": {
     "about":      "Om mig",
     "showcase":   "Projekt",
     "contact":    "Kontakt",
     "main":       "Hem"
+  },
+  "showcase": {
+    "pageTitle":  "Projekt",
+    "heading":    "Projekt"
+
+  },
+  "contact": {
+    "pageTitle":  "Kontakt",
+    "heading":    "Kontakta"
+  },
+  "about": {
+    "pageTitle":  "Om mig",
+    "heading":    "Om"
   }
 }

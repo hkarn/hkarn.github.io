@@ -231,12 +231,12 @@ class App extends Component {
         top: false
       },
       pagePosition: 'about',
-      isDark: false}
+      isDark: true}
     } else if (/^\/contact/.test(pathLower)) {
       const navObj = {nav: {
         bottom: false
       },
-      isDark: true}
+      isDark: false}
       if (pagePosition === 'showcase') {
         navObj.nav.left = {text: 'main', link: '/'}
         navObj.nav.right = {text: 'about', link: '/about'}
@@ -267,7 +267,7 @@ class App extends Component {
 
   render () {
     const {isTranslationLoaded = false, loaderPassedDelay = false, loaderTimedOut = false, nav, isDark = false} = this.state
-    const {translate} = this.props
+    const {translate, location} = this.props
     const navText = isTranslationLoaded ? {
       about: translate('nav.about'),
       main: translate('nav.main'),
@@ -285,18 +285,20 @@ class App extends Component {
     const NavigationLeft = nav.left ? <NavigatorItem position={'left'} targetLink={nav.left.link} targetText={navText[nav.left.text]} isDark={isDark} /> : null
     const NavigationRight = nav.right ? <NavigatorItem position={'right'} targetLink={nav.right.link} targetText={navText[nav.right.text]} isDark={isDark} /> : null
 
+    const textColor = isDark ? {color: 'black'} : {color: 'white'}
+
     return (
       <div className="App" {...WheelReact.events} {...SwipeReact.events} {...ArrowKeysReact.events} tabIndex="1" ref={(div) => { this.topWrapper = div }} >
         {isTranslationLoaded
           ? (
             <div className="AppLoaded">
-              <TopMenu />
-              <IronImageBackground page={'main'} darken={0} />
+              <TopMenu isDark={isDark} />
+              <IronImageBackground page={location.pathname} />
               {NavigationTop}
               {NavigationBottom}
               {NavigationLeft}
               {NavigationRight}
-              <div className="PageWrapper" ref={ref => { this.PageWrapper = ref }}>
+              <div className="PageWrapper" ref={ref => { this.PageWrapper = ref }} style={textColor}>
 
                 <Switch>
                   <Route path="/about*" component={About} />
