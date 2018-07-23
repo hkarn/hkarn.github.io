@@ -21,8 +21,8 @@ class About extends Component {
 
         <main className={'ScreenWrapper AboutScreenWrapper'}>
           <h2 className="heading">{translate('about.heading')} Håkan</h2>
-          <h2 className="heading">Full-stack developer. This page is almost done but not quite yet...</h2>
-          <h2 className="heading">Meanwhile visit my Showcase and LinkedIn or contact me for more information and CV.</h2>
+          <h2 className="heading">Full-stack developer. This website is still a work in progress...</h2>
+          <h2 className="heading">Meanwhile visit my Showcase and LinkedIn, or contact me for more information and CV.</h2>
         </main>
       </div>
     )

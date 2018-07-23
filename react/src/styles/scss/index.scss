@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Merienda|Roboto');
+
 @import 'variables.scss';
 
 html, body {
   overflow: hidden;
+  font-family: 'Roboto', sans-serif;
 }
 
 *, h1 {
@@ -158,6 +161,20 @@ html, body {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'Merienda', cursive;
+  img {
+    filter: drop-shadow(0px 0px 5px black) grayscale(30%);
+  }
+  .techIcons {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 6px;
+    }
+  }
 }
 
 .MainScreenWrapperAnimated {
@@ -309,22 +326,22 @@ html, body {
 
 @keyframes fall {
   0% {
-    margin-top: -800px;
-    filter: blur(10px);
+    margin-top: -1000px;
+    filter: blur(2px);
   }
   5% {
-    margin-top: -750px;
-    filter: blur(9px);
+    margin-top: -810px;
+    filter: blur(11px);
   }
   10% {
-    margin-top: -650px;
+    margin-top: -675px;
 
-    filter: blur(9px);
+    filter: blur(10px);
   }
   15% {
     margin-top: -600px;
 
-    filter: blur(8px);
+    filter: blur(9px);
   }
   20% {
     margin-top: -550px;
@@ -334,7 +351,7 @@ html, body {
   25% {
     margin-top: -500px;
 
-    filter: blur(7px);
+    filter: blur(8px);
   }
   30% {
     margin-top: -450px;
@@ -344,7 +361,7 @@ html, body {
   35% {
     margin-top: -400px;
 
-    filter: blur(6px);
+    filter: blur(7px);
   }
   40% {
     margin-top: -350px;
@@ -354,7 +371,7 @@ html, body {
   50% {
     margin-top: -300px;
 
-    filter: blur(5px);
+    filter: blur(6px);
   }
   55% {
     margin-top: -250px;
@@ -364,7 +381,7 @@ html, body {
   60% {
     margin-top: -200px;
 
-    filter: blur(4px);
+    filter: blur(5px);
   }
   65% {
     margin-top: -200px;
@@ -374,7 +391,7 @@ html, body {
   70% {
     margin-top: -168px;
 
-    filter: blur(3px);
+    filter: blur(4px);
   }
   75% {
     margin-top: -137px;
@@ -384,7 +401,7 @@ html, body {
   80% {
     margin-top: -107px;
 
-    filter: blur(2px);
+    filter: blur(3px);
   }
   85% {
     margin-top: -78px;
@@ -394,7 +411,7 @@ html, body {
   90% {
     margin-top: -51px;
 
-    filter: blur(1px);
+    filter: blur(2px);
   }
   95% {
     margin-top: -25px;
