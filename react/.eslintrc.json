@@ -41,7 +41,7 @@
     "no-tabs": "error",
     "no-multiple-empty-lines": "error",
     "jsx-quotes": ["error", "prefer-double"],
-    "react/boolean-prop-naming": [2, { "rule": "^(is|has|does)[A-Z]([A-Za-z0-9]?)+" }],
+    "react/boolean-prop-naming": [2, { "rule": "^(is|has|does|show)[A-Z]([A-Za-z0-9]?)+" }],
     "react/destructuring-assignment": [2, "always"],
     "react/no-access-state-in-setstate": [2],
     "react/no-did-mount-set-state": [2],

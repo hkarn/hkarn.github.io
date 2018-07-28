@@ -39,14 +39,14 @@ class MainScreen extends Component {
           <h1 style={{margin: '9px 10px', fontSize: '2.05em'}}>{ translate('welcome.im') } Håkan Arnoldson</h1>
           <h2 style={{margin: '8px 10px', fontSize: '1.8em'}}>{ translate('welcome.title') }</h2>
           <ul style={{margin: '23px 10px', fontSize: '.89em'}} className="techIcons">
-            <li><FontAwesomeIcon icon={faJsSquare} /></li>
-            <li><FontAwesomeIcon icon={faReact} /></li>
-            <li><FontAwesomeIcon icon={faCss3} /></li>
-            <li><FontAwesomeIcon icon={faHtml5} /></li>
-            <li><FontAwesomeIcon icon={faNodeJs} /></li>
-            <li><FontAwesomeIcon icon={faPhp} /></li>
-            <li><FontAwesomeIcon icon={faDatabase} /></li>
-            <li><FontAwesomeIcon icon={faGit} /></li>
+            <li title="JavaScript, ES7"><FontAwesomeIcon icon={faJsSquare} /></li>
+            <li title="React 16"><FontAwesomeIcon icon={faReact} /></li>
+            <li title="CSS3"><FontAwesomeIcon icon={faCss3} /></li>
+            <li title="HTML5"><FontAwesomeIcon icon={faHtml5} /></li>
+            <li title="Node.js"><FontAwesomeIcon icon={faNodeJs} /></li>
+            <li title="PHP7"><FontAwesomeIcon icon={faPhp} /></li>
+            <li title="MongoDB, MSSQL, MySQL, Firebase"><FontAwesomeIcon icon={faDatabase} /></li>
+            <li title="Git"><FontAwesomeIcon icon={faGit} /></li>
           </ul>
           <img src={Me} alt="Håkan" style={{maxWidth: '35%', maxHeight: '20%', height: 'auto', width: 'auto', borderRadius: '20%', margin: '10px '}} />
         </main>
@@ -56,14 +56,14 @@ class MainScreen extends Component {
 }
 
 MainScreen.propTypes = {
-  translate     : PropTypes.func,
-  showAnimation : PropTypes.bool,
-  setAnimation  : PropTypes.func
+  translate    : PropTypes.func,
+  showAnimation: PropTypes.bool,
+  setAnimation : PropTypes.func
 }
 
 const mapStateToProps = state => ({
   showAnimation: state.animations.main,
-  translate: getTranslate(state.locale)
+  translate    : getTranslate(state.locale)
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

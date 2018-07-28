@@ -22,7 +22,18 @@
   },
   "contact": {
     "pageTitle":  "Kontakt",
-    "heading":    "Kontakta"
+    "heading":    "Kontakta Håkan",
+    "placeHolders": {
+      "name": "Ditt namn...",
+      "email": "Din e-post...",
+      "message": "Ditt meddelande...",
+      "send": "Skicka"
+    },
+    "validation": {
+      "name": "Du måste skriva in ett namn.",
+      "email": "Du måste skriva in en e-post.",
+      "message": "Du måste lämna ett meddelande."
+    }
   },
   "about": {
     "pageTitle":  "Om mig",

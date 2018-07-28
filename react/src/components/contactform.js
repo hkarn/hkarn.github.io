@@ -4,46 +4,42 @@ import myAxios from '../config/axios'
 import { connect } from 'react-redux'
 import { getTranslate, getActiveLanguage } from 'react-localize-redux'
 import Config from '../config/config'
-import update from 'immutability-helper';
+import update from 'immutability-helper'
 
 class ContactForm extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      name: '',
-      email: '',
-      message: '',
-      isSending: false,
+      name      : '',
+      email     : '',
+      message   : '',
+      isSending : false,
       validation: {
-        name: true,
-        email: true,
+        name   : true,
+        email  : true,
         message: true
-      },
-      hideBotCatcher: {transform: 'scale(.05)'}
+      }
     }
-  }
-
-  componentDidMount () {
-    const hideUrlField = setTimeout(() => { this.setState({hideBotCatcher: {display: 'none'}}); clearTimeout(hideUrlField) }, 500)
   }
 
   onSubmit = e => {
     e.preventDefault()
+    const validationTimeout = 4500
     this.setState({isSending: true})
     const {...state} = this.state
     if (state.name === '' || state.email === '' || state.message === '') {
       // NEEDS CLEANUP
       if (state.name === '') {
         this.setState((prevState) => { return {validation: update(prevState.validation, {name: {$set: false}})} })
-        const timerName = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {name: {$set: true}})} }); clearTimeout(timerName) }, 3000)
+        const timerName = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {name: {$set: true}})} }); clearTimeout(timerName) }, validationTimeout)
       }
       if (state.email === '') {
         this.setState((prevState) => { return {validation: update(prevState.validation, {email: {$set: false}})} })
-        const timerEmail = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {email: {$set: true}})} }); clearTimeout(timerEmail) }, 3000)
+        const timerEmail = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {email: {$set: true}})} }); clearTimeout(timerEmail) }, validationTimeout)
       }
       if (state.message === '') {
         this.setState((prevState) => { return {validation: update(prevState.validation, {message: {$set: false}})} })
-        const timerMessage = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {message: {$set: true}})} }); clearTimeout(timerMessage) }, 3000)
+        const timerMessage = setTimeout(() => { this.setState((prevState) => { return {validation: update(prevState.validation, {message: {$set: true}})} }); clearTimeout(timerMessage) }, validationTimeout)
       }
       this.recaptcha.reset()
       this.setState({isSending: false})
@@ -60,10 +56,10 @@ class ContactForm extends Component {
   onResolved = () => {
     const {...state} = this.state
     myAxios.post('/', {
-      name: state.name,
-      email: state.email,
-      message: state.message,
-      recaptcha: this.recaptcha.getResponse(),
+      name           : state.name,
+      email          : state.email,
+      message        : state.message,
+      recaptcha      : this.recaptcha.getResponse(),
       isSimpleSpambot: this.dummyInput.value
     })
       .then(response => {
@@ -81,56 +77,56 @@ class ContactForm extends Component {
     const {...state} = this.state
 
     const style = {name: {}, email: {}, message: {}}
-    if (!state.validation.name) { style.name = {color: 'red'} }
-    if (!state.validation.email) { style.email = {color: 'red'} }
-    if (!state.validation.message) { style.message = {color: 'red'} }
+    const invalidStyle = {border: '2px solid red', color: 'red'}
+    if (!state.validation.name) { style.name = invalidStyle }
+    if (!state.validation.email) { style.email = invalidStyle }
+    if (!state.validation.message) { style.message = invalidStyle }
 
     return (<div style={{width: '100%'}}>
-      <form onSubmit={this.onSubmit} disabled={state.isSending}>
-        <h2 className="heading">{props.translate('contact.heading')} Håkan</h2>
+      <form onSubmit={this.onSubmit} disabled={state.isSending} noValidate>
+        <h2 className="heading">{props.translate('contact.heading')}</h2>
         <fieldset disabled={state.isSending}>
           <input
             id="urlfield"
             name="url"
-            style={state.hideBotCatcher}
             placeholder="Leave this field empty!"
             type="url"
             value=""
-            ref={dummyInput => { this.dummyInput = dummyInput }}
+            style={{display: 'none'}}
           />
           <input
             id="name-input"
             name="name"
             style={style.name}
-            placeholder="Your name"
+            placeholder={props.translate('contact.placeHolders.name')}
             type="text"
             value={state.name}
             onChange={event => this.setState({ name: event.target.value })}
             required
           />
-          {!state.validation.name ? <label htmlFor="name-input" style={style.name}>You must enter a name.</label> : null}
+          {!state.validation.name ? <label htmlFor="name-input" style={style.name}>{props.translate('contact.validation.name')}</label> : null}
           <input
             id="email-input"
             name="email"
             style={style.email}
-            placeholder="Your email"
+            placeholder={props.translate('contact.placeHolders.email')}
             type="email"
             value={state.email}
             onChange={event => this.setState({ email: event.target.value })}
             required
           />
-          {!state.validation.email ? <label htmlFor="email-input" style={style.email}>You must enter an email.</label> : null}
+          {!state.validation.email ? <label htmlFor="email-input" style={style.email}>{props.translate('contact.validation.email')}</label> : null}
           <textarea
             id="text-input"
             name="message"
             style={style.message}
-            placeholder="Your message..."
+            placeholder={props.translate('contact.placeHolders.message')}
             onChange={event => this.setState({ message: event.target.value })}
             value={state.message}
             required
           />
-          {!state.validation.message ? <label htmlFor="text-input" style={style.message}>You must enter a message.</label> : null}
-          <input type="submit" value="Submit" disabled={state.isSending} />
+          {!state.validation.message ? <label htmlFor="text-input" style={style.message}>{props.translate('contact.validation.message')}</label> : null}
+          <input type="submit" value={props.translate('contact.placeHolders.send')} disabled={state.isSending} />
           <Recaptcha
             ref={ref => { this.recaptcha = ref }}
             sitekey={Config.reCaptchaPub}
