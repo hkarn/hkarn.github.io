@@ -47,7 +47,7 @@ export const experience: Role[] = [
 ];
 
 export const moreExperience: Role[] = [
-  { role: { en: 'Sergeant, squad leader in an anti-aircraft communications unit', sv: 'Sergeant, gruppchef i en sambandsgrupp inom luftvärnet' }, org: { en: 'Swedish Army', sv: 'Armén' } },
+  { role: { en: 'Sergeant, squad leader in an anti-aircraft communications unit', sv: 'Furir, gruppchef i en sambandsgrupp inom luftvärnet' }, org: { en: 'Swedish Army', sv: 'Armén' } },
   { role: { en: 'Founder, virtual-office services for small companies', sv: 'Grundare, virtuella kontorstjänster för småföretag' }, org: 'Business Auxiliary Services' },
   { role: { en: 'Machine operator, packaging', sv: 'Maskinoperatör, paketering' }, org: 'Arla Foods' },
   { role: { en: 'Vehicle care, train turnaround', sv: 'Fordonsvård, tågvändning' }, org: 'ISS Facility Services' },
