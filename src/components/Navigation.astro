@@ -1,0 +1,25 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import LangSwitch from './LangSwitch.astro';
+import Icon from './Icon.astro';
+import { useTranslations, type Locale } from '../i18n/ui';
+import { links } from '../data/links';
+interface Props { lang: Locale; page: string }
+const { lang, page } = Astro.props;
+const t = useTranslations(lang);
+---
+<header class="site-header">
+  <a class="wordmark" href={getRelativeLocaleUrl(lang)} aria-current={page === '' ? 'page' : undefined}>Håkan Arnoldson</a>
+  <nav class="main-nav" aria-label={t('nav.label') as string}>
+    <a href={getRelativeLocaleUrl(lang, 'cv')} aria-current={page === 'cv' ? 'page' : undefined}>CV</a>
+    <a href={getRelativeLocaleUrl(lang, 'projects')} aria-current={page === 'projects' ? 'page' : undefined}>{lang === 'sv' ? 'Projekt' : 'Projects'}</a>
+    <a href={getRelativeLocaleUrl(lang, 'contact')} aria-current={page === 'contact' ? 'page' : undefined}>{t('nav.contact')}</a>
+  </nav>
+  <div class="header-tools">
+    <div class="social-icons">
+      <a href={links.github} aria-label="GitHub" rel="me"><Icon name="github" size={20} /></a>
+      <a href={links.linkedin} aria-label="LinkedIn" rel="me"><Icon name="linkedin" size={20} /></a>
+    </div>
+    <LangSwitch lang={lang} path={page} />
+  </div>
+</header>

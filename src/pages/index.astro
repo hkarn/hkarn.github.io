@@ -1,0 +1,47 @@
+---
+// Root of hkarn.github.io. GitHub Pages cannot negotiate languages on the
+// server, so this page chooses in the browser: saved choice, then the
+// browser's languages, then English. Without JS it is a plain picker.
+import { getRelativeLocaleUrl, getAbsoluteLocaleUrl } from 'astro:i18n';
+import { locales, localeNames, defaultLocale } from '../i18n/ui';
+const urls = Object.fromEntries(locales.map((l) => [l, getRelativeLocaleUrl(l)]));
+const preview = !!import.meta.env.PUBLIC_PREVIEW;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Håkan Arnoldson</title>
+  <meta name="description" content="Håkan Kindström Arnoldson — BI and data-warehouse developer in Göteborg. English and Swedish." />
+  {locales.map((l) => <link rel="alternate" hreflang={localeNames[l].htmlLang} href={getAbsoluteLocaleUrl(l)} />)}
+  <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script is:inline define:vars={{ urls, locales, fallback: defaultLocale, preview }}>
+    (function () {
+      var pick = null;
+      if (!preview) { try { pick = localStorage.getItem('lang'); } catch (e) {} }
+      if (locales.indexOf(pick) < 0) {
+        pick = fallback;
+        var prefs = navigator.languages || [navigator.language || ''];
+        for (var i = 0; i < prefs.length; i++) {
+          var base = String(prefs[i]).toLowerCase().split('-')[0];
+          if (base === 'nb' || base === 'nn' || base === 'no' || base === 'da') base = 'sv'; // Scandinavian readers
+          if (locales.indexOf(base) >= 0) { pick = base; break; }
+        }
+      }
+      location.replace(urls[pick] + location.hash);
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content={`0; url=${urls[defaultLocale]}`} /></noscript>
+  <style>
+    html{background:#ff8126;color:#111;font:500 20px/1.5 system-ui,sans-serif}
+    body{min-height:100svh;display:grid;place-content:center;gap:16px;margin:0;text-align:center}
+    a{color:inherit;font-size:28px}
+  </style>
+</head>
+<body>
+  <p>Håkan Arnoldson</p>
+  {locales.map((l) => <a href={urls[l]} hreflang={localeNames[l].htmlLang} lang={localeNames[l].htmlLang}>{localeNames[l].long}</a>)}
+</body>
+</html>

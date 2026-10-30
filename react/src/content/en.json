@@ -1,0 +1,42 @@
+{
+  "locale": "en_GB",
+  "welcome": {
+    "pageTitle":    "Welcome",
+    "greeting":     "Hello!",
+    "im":           "I am",
+    "title":        "Full-stack developer"
+  },
+  "page": {
+    "desc":       "Portfolio site for Håkan Kindström Arnoldson, full-stack developer"
+  },
+  "nav": {
+    "about":      "About",
+    "showcase":   "Showcase",
+    "contact":    "Contact",
+    "main":       "Home"
+  },
+  "showcase": {
+    "pageTitle":  "Showcase",
+    "heading":    "Showcase"
+
+  },
+  "contact": {
+    "pageTitle":  "Contact",
+    "heading":    "Contact Håkan",
+    "placeHolders": {
+      "name": "Your name...",
+      "email": "Your e-mail...",
+      "message": "Your message...",
+      "send": "Send"
+    },
+    "validation": {
+      "name": "You must enter a name.",
+      "email": "You must enter an e-mail.",
+      "message": "You must enter a message."
+    }
+  },
+  "about": {
+    "pageTitle":  "About",
+    "heading":    "About"
+  }
+}

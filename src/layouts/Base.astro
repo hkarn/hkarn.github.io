@@ -1,0 +1,54 @@
+---
+import '@fontsource/bodoni-moda/latin-500.css';
+import '@fontsource/bodoni-moda/latin-600.css';
+import '@fontsource/jost/latin-400.css';
+import '@fontsource/jost/latin-500.css';
+import '../styles/site.css';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { locales, localeNames, useTranslations, type Locale } from '../i18n/ui';
+
+interface Props {
+  lang: Locale;
+  /** Path inside the locale, without the locale prefix ('' for the start page). */
+  path?: string;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  home?: boolean;
+}
+const { lang, path = '', title, description, noindex = false, home = false } = Astro.props;
+const t = useTranslations(lang);
+const pageTitle = title ?? (t('meta.title') as string);
+const pageDesc = description ?? (t('meta.description') as string);
+const canonical = getAbsoluteLocaleUrl(lang, path);
+---
+<!doctype html>
+<html lang={localeNames[lang].htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={pageDesc} />
+  {noindex && <meta name="robots" content="noindex" />}
+  <link rel="canonical" href={canonical} />
+  {locales.map((l) => (
+    <link rel="alternate" hreflang={localeNames[l].htmlLang} href={getAbsoluteLocaleUrl(l, path)} />
+  ))}
+  <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={pageDesc} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={localeNames[lang].og} />
+  {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={localeNames[l].og} />)}
+  <meta name="theme-color" content="#ff8126" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class={home ? 'is-home' : undefined}>
+  <a class="skip" href="#main">{t('skip')}</a>
+  <slot />
+  <script>
+    import '../scripts/site.ts';
+  </script>
+</body>
+</html>

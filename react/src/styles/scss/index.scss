@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat|Roboto');
+
+@import 'variables.scss';
+
+html, body {
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+*, h1 {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.invertColors {
+  filter: invert(100%);
+}
+
+.App, .AppLoaded { 
+  height: 100%;
+  width: 100%;
+  height: 100vh;
+  width: 100vw;
+  &:focus {
+    outline: 0;
+  }
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.PageWrapper {
+  top: $mainMenuHeight;
+  bottom: 64px;
+  left: 0;
+  position: fixed;
+  padding: 5px 57px;
+  width: 100%;
+  width: 100vw;
+  overflow: auto;
+}
+
+
+
+.TopMenuWrapper {
+  height: $mainMenuHeight;
+  width: 100%;
+  background-color: transparent;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: #fff;
+  z-index: 5;
+
+  a, a:link, a:hover, a:visited, a:active {
+    color:inherit;
+  }
+
+  a:hover {
+    filter: invert(35%);
+  }
+  
+  .LanguageSelector {
+    margin-left: 10px;
+    width: 100px;
+    display: inline-block;
+    padding: 0 7px 0 10px;
+    font-size: 2em;
+    margin-right: auto;
+    border-radius: 6px 6px 0 0;
+
+    &:focus,
+    &:focus-within {
+      outline: 0;
+    }
+
+    &.open {
+        background-color: #fff;
+        color: #000;
+        outline: 0;
+      
+    
+      .LanguageDropDown,
+      .LanguageDropDown,
+      .LanguageDropDown {
+        visibility: visible;
+        z-index: 10;
+      }
+    }
+
+    .LanguageDropDown {
+      visibility: hidden;
+      z-index: -9999;
+      width: 100px;
+      margin-left: -10px;
+      margin-top: -1px; //ms edge positioning fix
+      position: absolute;
+      background-color: #fff;
+      color: #000;
+      font-size: 0.6em;
+      padding: 0 6px 5px 8px;
+      border-radius: 0 0 6px 6px;
+      .LanguageItem {
+        padding: 1px 3px;
+        &:focus,
+        &:focus-within {
+        background-color: #000;
+        color: #fff;
+        border-radius: 4px;
+        outline: 0;
+        }
+      }
+      .SelectedLanguageItem {
+          font-style: italic;          
+      }
+    }
+
+  }
+
+
+
+}
+
+.ScreenWrapper {
+  padding: 5px;
+  h2.heading {
+    font-size: 2.3em;
+    padding-top: 10px;
+    text-align: center;
+  }
+}
+
+.MainScreenWrapper {
+  text-align: center; 
+  color: #fff;
+  font-size: 2.85vw;
+  padding-top: 5vh;
+  padding-bottom: 35px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Caveat', cursive;
+  img {
+    filter: drop-shadow(0px 0px 5px black) grayscale(30%);
+  }
+  .techIcons {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin: 0 6px;
+    }
+  }
+}
+
+.MainScreenWrapperAnimated {
+  animation: fall 1.2s ease-in;
+  animation-iteration-count: 1;
+}
+
+.AboutScreenWrapper {
+
+}
+
+.ContactScreenWrapper {
+  text-align: center;
+  margin-top: 15vh;
+  input, textarea, label {
+    display: block;
+    border-radius: 4px;
+    padding: 3px;
+    margin: 5px auto;
+    font-size: 1.2em;
+    max-width: 450px;
+    min-width: 200px;
+    width: 75%; 
+    background-color: rgba(255, 255, 255, 0.88)
+  }
+  textarea {
+    height: 200px;
+  }
+  fieldset {
+    border: 0
+  }
+  
+}
+
+.ShowcaseScreenWrapper {
+  padding-top: 8px;
+  padding-bottom: 60px;
+  .ProjectContainer {
+    display: flex;
+    min-height: 400px;
+    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-content: space-around;
+    .projectItem {
+      min-width: 264px;
+      width: calc(26.6vw + 8px);
+      color: black;
+      text-align: center;
+      padding: 4px;
+      margin: 15px 10px;
+      border-radius: 3px;
+      background-color: #fff;
+      box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      .ironImgContainer{
+        min-width: 250px;
+        min-height: 140px;
+        width: 26.6vw;
+        height: 13.4vw;
+        border-radius: 5px;
+        .iron-image-container {
+          z-index: 2 !important;
+        }
+      }
+      a,
+      a:link,
+      a:visited,
+      a:active {
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: black;
+        font-size: 1.2em;
+        margin: 6px 2px;
+        &:hover {
+          text-decoration: none
+        }
+      }
+      h3 {
+        font-size: 1.1em;
+        font-weight: bold;
+        text-align: center;
+        margin: 2px;
+      }
+      p {
+        font-size: 0.85em;
+        margin: 3px;
+        color: #333;
+        text-align: justify;
+        min-height: calc(150px - 3.5vw);
+      }
+    }
+    
+  }
+}
+
+
+.NavItemWrapper {
+  a, a:visited, a:active, a:link {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover {
+    animation: blur .75s linear;
+    animation-iteration-count: 1;
+  }
+} 
+
+.grecaptcha-badge {
+  margin: 3px auto;
+  transform: scale(.7);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 380px) {
+  .NavItemWrappertop {
+    //adjust space confict with social icons for really tiny devises
+      left: 35% !important;
+  }
+}
+
+@keyframes blur {
+  0% {filter: blur(0px);}
+  10% {filter: blur(2px);}
+  20% {filter: blur(4px);}
+  30% {filter: blur(6px);}
+  40% {filter: blur(25px);}
+  50% {filter: blur(100px);}
+  60% {filter: blur(25px);}
+  70% {filter: blur(6px);}
+  80% {filter: blur(4px);}
+  90% {filter: blur(2px);}
+  100% {filter: blur(0px);}
+}
+
+@keyframes fall {
+  0% {
+    margin-top: -1000px;
+    filter: blur(2px);
+  }
+  5% {
+    margin-top: -810px;
+    filter: blur(11px);
+  }
+  10% {
+    margin-top: -675px;
+
+    filter: blur(10px);
+  }
+  15% {
+    margin-top: -600px;
+
+    filter: blur(9px);
+  }
+  20% {
+    margin-top: -550px;
+
+    filter: blur(8px);
+  }
+  25% {
+    margin-top: -500px;
+
+    filter: blur(8px);
+  }
+  30% {
+    margin-top: -450px;
+
+    filter: blur(7px);
+  }
+  35% {
+    margin-top: -400px;
+
+    filter: blur(7px);
+  }
+  40% {
+    margin-top: -350px;
+
+    filter: blur(6px);
+  }
+  50% {
+    margin-top: -300px;
+
+    filter: blur(6px);
+  }
+  55% {
+    margin-top: -250px;
+
+    filter: blur(5px);
+  }
+  60% {
+    margin-top: -200px;
+
+    filter: blur(5px);
+  }
+  65% {
+    margin-top: -200px;
+
+    filter: blur(4px);
+  }
+  70% {
+    margin-top: -168px;
+
+    filter: blur(4px);
+  }
+  75% {
+    margin-top: -137px;
+
+    filter: blur(3px);
+  }
+  80% {
+    margin-top: -107px;
+
+    filter: blur(3px);
+  }
+  85% {
+    margin-top: -78px;
+
+    filter: blur(2px);
+  }
+  90% {
+    margin-top: -51px;
+
+    filter: blur(2px);
+  }
+  95% {
+    margin-top: -25px;
+
+    filter: blur(1px);
+  }
+  100% {
+    margin-top: 0px;
+
+    filter: blur(0px);
+  }
+}
+

@@ -1,0 +1,31 @@
+---
+// GitHub Pages serves this file for every unknown path. The language is
+// guessed from the URL prefix in the browser; static HTML shows both.
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { ui } from '../i18n/ui';
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>404 — Håkan Arnoldson</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <style is:global>
+    html{background:#161615;color:#f2f2f2;font:400 18px/1.6 system-ui,sans-serif}
+    body{min-height:100svh;display:grid;place-content:center;gap:56px;margin:0;padding:24px}
+    h1{font:600 clamp(64px,12vw,160px)/.9 Georgia,serif;margin:0;color:#ff8126}
+    section{max-width:44ch} a{color:#ff8126}
+    .sv section[lang=en],.en section[lang=sv]{display:none}
+  </style>
+  <script is:inline>
+    document.documentElement.className = location.pathname.indexOf('/sv/') === 0 ? 'sv' : 'en';
+  </script>
+</head>
+<body>
+  <h1>404</h1>
+  <section lang="en"><h2>{ui.en['404.title']}</h2><p>{ui.en['404.body']}</p><a href={getRelativeLocaleUrl('en')}>{ui.en['404.home']}</a></section>
+  <section lang="sv"><h2>{ui.sv['404.title']}</h2><p>{ui.sv['404.body']}</p><a href={getRelativeLocaleUrl('sv')}>{ui.sv['404.home']}</a></section>
+</body>
+</html>

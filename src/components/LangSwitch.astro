@@ -1,0 +1,15 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { locales, localeNames, useTranslations, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; path?: string }
+const { lang, path = '' } = Astro.props;
+const t = useTranslations(lang);
+---
+<nav class="langs" aria-label={t('lang.label') as string}>
+  {locales.map((l) => l === lang ? (
+    <span class="lang on" aria-current="true" lang={localeNames[l].htmlLang} title={localeNames[l].long}>{localeNames[l].short}</span>
+  ) : (
+    <a class="lang" href={getRelativeLocaleUrl(l, path)} hreflang={localeNames[l].htmlLang} lang={localeNames[l].htmlLang}
+       data-set-lang={l} aria-label={t('lang.switchTo') as string}>{localeNames[l].short}</a>
+  ))}
+</nav>

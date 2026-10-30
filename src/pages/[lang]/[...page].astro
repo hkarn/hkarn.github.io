@@ -1,0 +1,120 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navigation from '../../components/Navigation.astro';
+import Icon from '../../components/Icon.astro';
+import { locales, useTranslations, type Locale } from '../../i18n/ui';
+import { projects } from '../../data/projects';
+import { experience, moreExperience, education, moreEducation, languages } from '../../data/cv';
+import { links } from '../../data/links';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) => [undefined, 'cv', 'projects', 'contact'].map((page) => ({
+    params: { lang, page },
+  })));
+}
+const lang = Astro.params.lang as Locale;
+const page = Astro.params.page ?? '';
+const t = useTranslations(lang);
+const sv = lang === 'sv';
+const org = (o: string | Record<Locale, string>) => (typeof o === 'string' ? o : o[lang]);
+const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact' ? t('nav.contact') : 'CV'} | Håkan Arnoldson` : undefined;
+---
+<Base lang={lang} path={page} title={title} home={!page}>
+  <Navigation lang={lang} page={page} />
+  {page === '' && (
+    <main id="main" class="home">
+      <h1><span class="hero-line">{t('hero.line1')}</span><span class="hero-line">{t('hero.line2')}</span></h1>
+      <div class="home-bottom">
+        <p>{t('hero.lead')}</p>
+        <a class="button" href={getRelativeLocaleUrl(lang, 'projects')}>{sv ? 'Se projekten' : 'See the projects'}</a>
+      </div>
+    </main>
+  )}
+  {page === 'cv' && (
+    <main id="main" class="page cv-page">
+      <div class="page-heading cv-heading">
+        <h1>CV</h1>
+        <p>{t('cv.lead')}</p>
+      </div>
+      <section class="cv-section" aria-labelledby="experience">
+        <h2 id="experience">{t('cv.experience')}</h2>
+        <ul class="cv-roles">
+          {experience.map((item) => (
+            <li class="cv-role">
+              <div class="cv-role-head">
+                <h3>{item.role[lang]}</h3>
+                <p class="cv-org">{org(item.org)}</p>
+              </div>
+              {item.note && <p class="cv-note">{item.note[lang]}</p>}
+            </li>
+          ))}
+        </ul>
+        <div class="cv-more">
+          <h3>{t('cv.moreExperience')}</h3>
+          <ul>
+            {moreExperience.map((item) => (
+              <li>{item.role[lang]}<span class="cv-org"> · {org(item.org)}</span></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <section class="cv-section" aria-labelledby="education">
+        <h2 id="education">{t('cv.education')}</h2>
+        <ul class="cv-roles cv-studies">
+          {education.map((item) => (
+            <li class="cv-role">
+              <div class="cv-role-head">
+                <h3>{item.role[lang]}</h3>
+                <p class="cv-org">{org(item.org)}</p>
+              </div>
+              {item.note && <p class="cv-note">{item.note[lang]}</p>}
+            </li>
+          ))}
+        </ul>
+        <div class="cv-more">
+          <h3>{t('cv.moreEducation')}</h3>
+          <ul>
+            {moreEducation.map((item) => (
+              <li>{item.role[lang]}<span class="cv-org"> · {org(item.org)}</span></li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <section class="cv-section cv-languages" aria-labelledby="languages">
+        <h2 id="languages">{t('cv.languages')}</h2>
+        <p>{languages[lang]}</p>
+      </section>
+      <p class="cv-footer"><a class="text-link" href={links.linkedin}><Icon name="linkedin" size={18} />{t('cv.full')}</a></p>
+    </main>
+  )}
+  {page === 'projects' && (
+    <main id="main" class="page projects-page">
+      <div class="page-heading"><h1>{sv ? 'Projekt' : 'Projects'}</h1></div>
+      <div class="project-list">
+        {projects.map((project) => (
+          <article class="project">
+            <h2>{project.name[lang]}</h2>
+            <div class="project-body">
+              <p>{project.summary[lang]}</p>
+              <div class="project-links">
+                <a href={project.live[lang]} aria-label={`${sv ? 'Öppna' : 'Visit'} ${project.name[lang]}`}>{sv ? 'Besök webbplatsen' : 'Visit website'}<span aria-hidden="true">↗</span></a>
+                <a href={project.source} aria-label={`${sv ? 'Källkod för' : 'Source for'} ${project.name[lang]}`}><Icon name="github" size={18} />{sv ? 'Källkod' : 'Source'}</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </main>
+  )}
+  {page === 'contact' && (
+    <main id="main" class="page contact-page">
+      <div class="page-heading"><h1>{t('nav.contact')}</h1><p>{sv ? 'Säg hej på LinkedIn eller ta en titt på min kod.' : 'Say hello on LinkedIn, or take a look at my code.'}</p></div>
+      <div class="contact-list">
+        <a href={links.linkedin} rel="me"><Icon name="linkedin" size={32} /><span>LinkedIn<small>linkedin.com/in/arnoldson</small></span><span aria-hidden="true">↗</span></a>
+        <a href={links.github} rel="me"><Icon name="github" size={32} /><span>GitHub<small>github.com/hkarn</small></span><span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="contact-location">{sv ? 'Göteborg, Sverige' : 'Göteborg, Sweden'}</p>
+    </main>
+  )}
+</Base>

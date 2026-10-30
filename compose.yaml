@@ -1,0 +1,14 @@
+# Docker-first development: no local Node needed.
+#   docker compose up            -> dev server on http://localhost:4321
+#   docker compose run --rm site npm run build
+services:
+  site:
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npx astro dev --host 0.0.0.0"
+    ports: ["4321:4321"]
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+volumes:
+  node_modules:
