@@ -14,7 +14,7 @@ Checks to run in a browser after changes to layout, navigation or content.
 - Open / in a fresh browser: it picks the saved language, then the browser's language, then English.
 
 ## CV
-- Neutral background, no dates.
+- Neutral background, no dates. Portrait above the section labels; beside the heading on phones.
 - Experience: four primary roles (title, organisation, one-paragraph note), then a
   compact "Also" list of further roles.
 - Education: three studies side by side, then further courses. Languages line.

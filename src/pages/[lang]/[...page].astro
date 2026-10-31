@@ -7,6 +7,8 @@ import { projects } from '../../data/projects';
 import { experience, moreExperience, education, moreEducation, languages } from '../../data/cv';
 import { links } from '../../data/links';
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import { Picture } from 'astro:assets';
+import portrait from '../../assets/portrait.jpg';
 
 export function getStaticPaths() {
   return locales.flatMap((lang) => [undefined, 'cv', 'projects', 'contact'].map((page) => ({
@@ -34,8 +36,12 @@ const description = page === 'cv' ? t('meta.cv') : page === 'projects' ? t('meta
   {page === 'cv' && (
     <main id="main" class="page cv-page">
       <div class="page-heading cv-heading">
-        <h1>CV</h1>
-        <p>{t('cv.lead')}</p>
+        <div class="cv-intro">
+          <h1>CV</h1>
+          <p>{t('cv.lead')}</p>
+        </div>
+        <Picture class="cv-portrait" src={portrait} formats={['avif', 'webp']} widths={[192, 288, 440, 660]}
+          sizes="(max-width: 700px) 96px, 220px" alt={t('cv.portrait')} loading="eager" />
       </div>
       <section class="cv-section" aria-labelledby="experience">
         <h2 id="experience">{t('cv.experience')}</h2>

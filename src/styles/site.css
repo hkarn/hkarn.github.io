@@ -48,7 +48,10 @@ button,a{-webkit-tap-highlight-color:transparent}
 .page-heading{margin-bottom:48px;display:flex;align-items:baseline;gap:56px}
 .page-heading h1{font:500 clamp(56px,7vw,96px)/1.05 var(--display);letter-spacing:-.03em;flex:none}
 .page-heading>p{max-width:42ch;font-size:20px}
-.cv-heading{margin-bottom:24px}
+/* Same columns as .cv-section, so the portrait sits above the section labels. */
+.cv-heading{display:grid;grid-template-columns:minmax(160px,1fr) minmax(0,3fr);gap:24px 60px;align-items:end;margin-bottom:36px}
+.cv-intro{grid-column:2;grid-row:1;display:flex;align-items:baseline;gap:56px}
+.cv-portrait{display:block;width:clamp(150px,13vw,200px);height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 25%;background:#d9d9d2}
 .cv-section{display:grid;grid-template-columns:minmax(160px,1fr) minmax(0,3fr);gap:24px 60px;padding:36px 0;border-top:1px solid #d9d9d2}
 .cv-section h2{font-size:17px;font-weight:500;letter-spacing:.01em;color:var(--secondary);padding-top:10px}
 .cv-roles{grid-column:2;list-style:none;padding:0;margin:0;display:grid;gap:30px}
@@ -106,7 +109,10 @@ button,a{-webkit-tap-highlight-color:transparent}
   .page{padding-top:28px;padding-bottom:40px}
   .page-heading{display:block;margin-bottom:32px}
   .page-heading>p{font-size:18px;margin-top:20px}
-  .cv-heading{margin-bottom:8px}
+  .cv-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;margin-bottom:8px}
+  .cv-intro{grid-column:1;display:block}
+  .cv-heading picture{grid-column:2;grid-row:1}
+  .cv-portrait{width:96px}
   .cv-section{grid-template-columns:minmax(0,1fr);gap:20px;padding:28px 0}
   .cv-section h2{padding-top:0}
   .cv-roles,.cv-more,.cv-languages p{grid-column:1}

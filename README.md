@@ -29,7 +29,8 @@ Without Docker, use Node 24 (Astro needs 22.23 or newer) and run `npm ci && npm 
 
 - Projects: `src/data/projects.ts`, with names, summaries and live/source URLs.
 - CV: `src/data/cv.ts`, a selective, undated profile: `experience` and `education` are the featured entries, `moreExperience` and `moreEducation` the compact "Also" lists, plus `languages`.
-- Profile links and the "Say hej" target: `src/data/links.ts`.
+- Profile links: `src/data/links.ts`.
+- CV portrait: `src/assets/portrait.jpg`. Astro resizes it to AVIF and WebP at build time.
 - Styles: `src/styles/site.css`.
 - Share images and the touch icon: run `docker compose run --rm site node scripts/make-images.mjs` after changing the hero text, title or colours. It writes `public/og-en.png`, `public/og-sv.png` and `public/apple-touch-icon.png`.
 

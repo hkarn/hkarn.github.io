@@ -7,6 +7,8 @@ import '../styles/site.css';
 import { getAbsoluteLocaleUrl } from 'astro:i18n';
 import { locales, localeNames, useTranslations, type Locale } from '../i18n/ui';
 import { links } from '../data/links';
+import { getImage } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
 
 interface Props {
   lang: Locale;
@@ -24,12 +26,14 @@ const pageDesc = description ?? t('meta.description');
 const canonical = getAbsoluteLocaleUrl(lang, path);
 const image = new URL(`/og-${lang}.png`, Astro.site).href;
 // Structured data for search engines, on the start page only.
+const photo = home ? await getImage({ src: portrait, width: 480, format: 'jpg' }) : undefined;
 const person = home && {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Håkan Kindström Arnoldson',
   alternateName: 'Håkan Arnoldson',
   url: canonical,
+  image: photo && new URL(photo.src, Astro.site).href,
   jobTitle: t('meta.jobTitle'),
   address: { '@type': 'PostalAddress', addressLocality: 'Göteborg', addressCountry: 'SE' },
   sameAs: [links.linkedin, links.github],
