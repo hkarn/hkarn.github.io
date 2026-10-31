@@ -13,7 +13,7 @@ Home, CV, Projects and Contact are independent static routes in each language. N
 - Content that varies by language (projects, CV) is stored as `{ en, sv }` values in `src/data/`.
 - Every page has `<html lang>`, a canonical URL, `hreflang` alternates for en, sv and x-default, and `og:locale`.
 - The language switch links to the same page in the other language and saves the choice in `localStorage`.
-- `/` is a small static picker page. It redirects in the browser to the saved choice; if there is none, it uses the browser's languages (Norwegian and Danish go to Swedish). Otherwise it falls back to English. Without JS it shows plain links.
+- `/` is a small static picker page. It redirects in the browser to the saved choice; if there is none, it uses the browser's languages (Norwegian and Danish go to Swedish). Otherwise it falls back to English. Without JS it redirects to English.
 - `404.html` shows the message in the language matching the URL prefix.
 
 ## Develop (Docker, no local Node)

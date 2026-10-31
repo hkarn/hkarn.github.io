@@ -16,7 +16,6 @@ export function getStaticPaths() {
 const lang = Astro.params.lang as Locale;
 const page = Astro.params.page ?? '';
 const t = useTranslations(lang);
-const sv = lang === 'sv';
 const org = (o: string | Record<Locale, string>) => (typeof o === 'string' ? o : o[lang]);
 const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact' ? t('nav.contact') : 'CV'} | Håkan Arnoldson` : undefined;
 ---
@@ -27,7 +26,7 @@ const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact'
       <h1><span class="hero-line">{t('hero.line1')}</span><span class="hero-line">{t('hero.line2')}</span></h1>
       <div class="home-bottom">
         <p>{t('hero.lead')}</p>
-        <a class="button" href={getRelativeLocaleUrl(lang, 'projects')}>{sv ? 'Se projekten' : 'See the projects'}</a>
+        <a class="button" href={getRelativeLocaleUrl(lang, 'projects')}>{t('hero.cta')}</a>
       </div>
     </main>
   )}
@@ -90,7 +89,7 @@ const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact'
   )}
   {page === 'projects' && (
     <main id="main" class="page projects-page">
-      <div class="page-heading"><h1>{sv ? 'Projekt' : 'Projects'}</h1></div>
+      <div class="page-heading"><h1>{t('nav.work')}</h1></div>
       <div class="project-list">
         {projects.map((project) => (
           <article class="project">
@@ -98,8 +97,8 @@ const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact'
             <div class="project-body">
               <p>{project.summary[lang]}</p>
               <div class="project-links">
-                <a href={project.live[lang]} aria-label={`${sv ? 'Öppna' : 'Visit'} ${project.name[lang]}`}>{sv ? 'Besök webbplatsen' : 'Visit website'}<span aria-hidden="true">↗</span></a>
-                <a href={project.source} aria-label={`${sv ? 'Källkod för' : 'Source for'} ${project.name[lang]}`}><Icon name="github" size={18} />{sv ? 'Källkod' : 'Source'}</a>
+                <a href={project.live[lang]} aria-label={`${t('projects.visit')}: ${project.name[lang]}`}>{t('projects.visit')}<span aria-hidden="true">↗</span></a>
+                <a href={project.source} aria-label={`${t('projects.source')}: ${project.name[lang]}`}><Icon name="github" size={18} />{t('projects.source')}</a>
               </div>
             </div>
           </article>
@@ -109,12 +108,12 @@ const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact'
   )}
   {page === 'contact' && (
     <main id="main" class="page contact-page">
-      <div class="page-heading"><h1>{t('nav.contact')}</h1><p>{sv ? 'Säg hej på LinkedIn eller ta en titt på min kod.' : 'Say hello on LinkedIn, or take a look at my code.'}</p></div>
+      <div class="page-heading"><h1>{t('nav.contact')}</h1><p>{t('contact.lead')}</p></div>
       <div class="contact-list">
         <a href={links.linkedin} rel="me"><Icon name="linkedin" size={32} /><span>LinkedIn<small>linkedin.com/in/arnoldson</small></span><span aria-hidden="true">↗</span></a>
         <a href={links.github} rel="me"><Icon name="github" size={32} /><span>GitHub<small>github.com/hkarn</small></span><span aria-hidden="true">↗</span></a>
       </div>
-      <p class="contact-location">{sv ? 'Göteborg, Sverige' : 'Göteborg, Sweden'}</p>
+      <p class="contact-location">{t('contact.location')}</p>
     </main>
   )}
 </Base>

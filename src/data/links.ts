@@ -1,6 +1,5 @@
-// Public profile links. Change `hello` to a mailto: once you pick a public address.
+// Public profile links.
 export const links = {
   github: 'https://github.com/hkarn',
   linkedin: 'https://www.linkedin.com/in/arnoldson/',
-  hello: 'https://www.linkedin.com/in/arnoldson/',
 } as const;

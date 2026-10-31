@@ -18,8 +18,8 @@ interface Props {
 }
 const { lang, path = '', title, description, noindex = false, home = false } = Astro.props;
 const t = useTranslations(lang);
-const pageTitle = title ?? (t('meta.title') as string);
-const pageDesc = description ?? (t('meta.description') as string);
+const pageTitle = title ?? t('meta.title');
+const pageDesc = description ?? t('meta.description');
 const canonical = getAbsoluteLocaleUrl(lang, path);
 ---
 <!doctype html>

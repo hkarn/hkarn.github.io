@@ -7,9 +7,7 @@ export interface Project {
   source: string;
 }
 
-// The two new products are included as functional on the owner's instruction.
-// The legacy destinations were opened in Comet. Code-only projects and
-// the social app (no working public content flow established) are omitted.
+// Projects with a public live site, in display order.
 export const projects: Project[] = [
   {
     name: { en: 'MoneyWorks / Pengar jobbar', sv: 'Pengar jobbar / MoneyWorks' },

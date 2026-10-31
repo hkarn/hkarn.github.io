@@ -17,9 +17,6 @@
     "search.exclude": {
       "**/node_modules": true,
       "**/package-lock.json": true,
-      "**/yarn.lock": true,
-      "**/composer.lock": true,
-      "api/vendor": true,
       "dist": true,
       ".astro": true
     },
@@ -28,8 +25,7 @@
   "extensions": {
     "recommendations": [
       "astro-build.astro-vscode",
-      "ms-azuretools.vscode-docker",
-      "bmewburn.vscode-intelephense-client"
+      "ms-azuretools.vscode-docker"
     ]
   }
 }

@@ -10,9 +10,9 @@ const t = useTranslations(lang);
 ---
 <header class="site-header">
   <a class="wordmark" href={getRelativeLocaleUrl(lang)} aria-current={page === '' ? 'page' : undefined}>Håkan Arnoldson</a>
-  <nav class="main-nav" aria-label={t('nav.label') as string}>
+  <nav class="main-nav" aria-label={t('nav.label')}>
     <a href={getRelativeLocaleUrl(lang, 'cv')} aria-current={page === 'cv' ? 'page' : undefined}>CV</a>
-    <a href={getRelativeLocaleUrl(lang, 'projects')} aria-current={page === 'projects' ? 'page' : undefined}>{lang === 'sv' ? 'Projekt' : 'Projects'}</a>
+    <a href={getRelativeLocaleUrl(lang, 'projects')} aria-current={page === 'projects' ? 'page' : undefined}>{t('nav.work')}</a>
     <a href={getRelativeLocaleUrl(lang, 'contact')} aria-current={page === 'contact' ? 'page' : undefined}>{t('nav.contact')}</a>
   </nav>
   <div class="header-tools">
