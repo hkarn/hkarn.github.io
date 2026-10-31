@@ -18,7 +18,7 @@ export const projects: Project[] = [
       sv: 'Verktyg för privatekonomi på svenska och engelska. Utforska ekonomisk frihet med en FIRE-kalkylator som samlar sparande, avkastning och pensionsinkomster i samma plan.',
     },
     live: { en: 'https://moneyworks.site/', sv: 'https://pengarjobbar.nu/' },
-    source: 'https://github.com/hkarn/moneyworks',
+    source: 'https://github.com/GothenburgOffice/moneyworks',
   },
   {
     name: { en: 'Vocabulary.Trainer', sv: 'Vocabulary.Trainer' },
@@ -27,7 +27,7 @@ export const projects: Project[] = [
       sv: 'Spara ordlistor, öva mellan språkpar och fokusera på orden som behöver mer träning. Statistiskt urval anpassar proven efter dina resultat, utan AI.',
     },
     live: { en: 'https://vocabulary.training/', sv: 'https://vocabulary.training/' },
-    source: 'https://github.com/hkarn/vocabulary-training',
+    source: 'https://github.com/GothenburgOffice/vocabulary-training',
   },
   {
     name: { en: 'Spinnfiskeklubben Vinga', sv: 'Spinnfiskeklubben Vinga' },
