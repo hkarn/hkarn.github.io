@@ -28,8 +28,7 @@ async function adapt(dir) {
     });
     if (file === path.join(target, 'index.html')) {
       html = html.replace('"en":"/en/"', '"en":"./en/index.html"')
-        .replace('"sv":"/sv/"', '"sv":"./sv/index.html"')
-        .replace(/if \(!preview\) \{ try \{ pick = localStorage\.getItem\('lang'\); \} catch \(e\) \{\} \}/, '');
+        .replace('"sv":"/sv/"', '"sv":"./sv/index.html"');
     }
     await writeFile(file, html);
   }

@@ -11,6 +11,11 @@ export const localeNames: Record<Locale, { short: string; long: string; htmlLang
 const en = {
   'meta.title': 'Håkan Arnoldson | BI and data-warehouse developer, Göteborg',
   'meta.description': 'Håkan Kindström Arnoldson builds data warehouses in Göteborg and small web apps on the side. Projects, CV and contact.',
+  'meta.cv': 'CV for Håkan Arnoldson: Business Intelligence consultant working with SQL Server, SSAS and SSRS, with a background in web development.',
+  'meta.projects': 'Web projects by Håkan Arnoldson: personal-finance tools, a vocabulary trainer, an AI API tester and more, with live sites and source code.',
+  'meta.contact': 'Contact Håkan Arnoldson, BI and data-warehouse developer in Göteborg, on LinkedIn or GitHub.',
+  'meta.jobTitle': 'BI and data-warehouse developer',
+  'meta.imageAlt': 'Data first, web after. Håkan Arnoldson, BI and data-warehouse developer, Göteborg',
   'skip': 'Skip to content',
   'nav.label': 'Main',
   'nav.work': 'Projects',
@@ -41,6 +46,11 @@ type Dict = Record<UIKey, string>;
 const sv: Dict = {
   'meta.title': 'Håkan Arnoldson | BI- och datalagerutvecklare, Göteborg',
   'meta.description': 'Håkan Kindström Arnoldson bygger datalager i Göteborg och små webbappar vid sidan av. Projekt, CV och kontakt.',
+  'meta.cv': 'CV för Håkan Arnoldson: Business Intelligence-konsult med SQL Server, SSAS och SSRS, och bakgrund inom webbutveckling.',
+  'meta.projects': 'Webbprojekt av Håkan Arnoldson: verktyg för privatekonomi, glosträning, en testkonsol för AI-API:er med mera, med webbplatser och källkod.',
+  'meta.contact': 'Kontakta Håkan Arnoldson, BI- och datalagerutvecklare i Göteborg, via LinkedIn eller GitHub.',
+  'meta.jobTitle': 'BI- och datalagerutvecklare',
+  'meta.imageAlt': 'Data först, webb sen. Håkan Arnoldson, BI- och datalagerutvecklare, Göteborg',
   'skip': 'Hoppa till innehållet',
   'nav.label': 'Huvudmeny',
   'nav.work': 'Projekt',

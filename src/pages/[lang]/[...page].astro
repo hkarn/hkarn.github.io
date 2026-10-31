@@ -18,8 +18,9 @@ const page = Astro.params.page ?? '';
 const t = useTranslations(lang);
 const org = (o: string | Record<Locale, string>) => (typeof o === 'string' ? o : o[lang]);
 const title = page ? `${page === 'projects' ? t('nav.work') : page === 'contact' ? t('nav.contact') : 'CV'} | Håkan Arnoldson` : undefined;
+const description = page === 'cv' ? t('meta.cv') : page === 'projects' ? t('meta.projects') : page === 'contact' ? t('meta.contact') : undefined;
 ---
-<Base lang={lang} path={page} title={title} home={!page}>
+<Base lang={lang} path={page} title={title} description={description} home={!page}>
   <Navigation lang={lang} page={page} />
   {page === '' && (
     <main id="main" class="home">

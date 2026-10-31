@@ -31,6 +31,11 @@ Without Docker, use Node 24 (Astro needs 22.23 or newer) and run `npm ci && npm 
 - CV: `src/data/cv.ts`, a selective, undated profile: `experience` and `education` are the featured entries, `moreExperience` and `moreEducation` the compact "Also" lists, plus `languages`.
 - Profile links and the "Say hej" target: `src/data/links.ts`.
 - Styles: `src/styles/site.css`.
+- Share images and the touch icon: run `docker compose run --rm site node scripts/make-images.mjs` after changing the hero text, title or colours. It writes `public/og-en.png`, `public/og-sv.png` and `public/apple-touch-icon.png`.
+
+## Search and sharing
+
+Every page has a title and description per language, Open Graph and Twitter card tags with a 1200×630 share image, and hreflang alternates. The start page adds `Person` structured data (JSON-LD). `@astrojs/sitemap` writes `sitemap-index.xml` with language alternates, and `robots.txt` points to it. The root picker carries its own English share tags, since link previews don't run JavaScript.
 
 ## Deploy
 
