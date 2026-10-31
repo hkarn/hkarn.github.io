@@ -2,6 +2,10 @@
 
 Personal site for Håkan Kindström Arnoldson, in English and Swedish. It is built with [Astro](https://astro.build) as plain static files for GitHub Pages.
 
+## Pages
+
+Home, CV, Projects and Contact are independent static routes in each language. Navigation works without client-side JavaScript. See `FLOWS.md` for the expected user journeys.
+
 ## Languages
 
 - The i18n setup lives in `astro.config.mjs` (`locales: ['en','sv']`, `prefixDefaultLocale: true`). Each language gets its own URL: `/en/` and `/sv/`.
@@ -23,42 +27,21 @@ Without Docker, use Node 24 (Astro needs 22.23 or newer) and run `npm ci && npm 
 
 ## Edit content
 
-- Projects: `src/data/projects.ts`, with names, summaries and live/source URLs. The two new products are included on the owner's assumption; the legacy destinations were checked in Comet.
-- CV: `src/data/cv.ts`, a selective, undated profile summarised from LinkedIn: `experience` and `education` are the eye-catching entries, `moreExperience` and `moreEducation` the compact "Also" lists, plus `languages`.
+- Projects: `src/data/projects.ts`, with names, summaries and live/source URLs.
+- CV: `src/data/cv.ts`, a selective, undated profile: `experience` and `education` are the featured entries, `moreExperience` and `moreEducation` the compact "Also" lists, plus `languages`.
 - Profile links and the "Say hej" target: `src/data/links.ts`.
 - Styles: `src/styles/site.css`.
 
 ## Deploy
 
-`.github/workflows/deploy.yml` builds and publishes to Pages on every push to `source`, or through a manual workflow dispatch. The repository's Pages publishing source must be "GitHub Actions". The `master` branch is not used by this workflow.
+`.github/workflows/deploy.yml` builds and publishes to Pages on every push to `source`, or through a manual workflow dispatch. The repository's Pages publishing source must be "GitHub Actions". Only the generated `dist/` directory is uploaded.
 
-The root Astro application is the maintained site. The existing `react/` and
-`api/` directories are retained as legacy source, but are not built or deployed.
-Only the generated `dist/` directory is uploaded as the Pages artifact.
+Several projects have their own Pages sites under this domain, such as `/currency-exchange-rates-front/`, `/vocabulary-tester-site/`, `/social-app-yhjust16/` and `/requesty-tester/`. Don't add catch-all redirects, custom-domain changes or generated directories that would shadow those paths.
 
-This deployment does not change the demo repositories or their Pages settings.
-Do not add catch-all redirects, custom-domain changes or generated directories
-that shadow `/currency-exchange-rates-front/`, `/vocabulary-tester-site/` or
-`/social-app-yhjust16/`.
+## Preview build
 
-The maintained branch is `source`. Repository history starts from the current
-snapshot; the obsolete `master` branch is not retained. Future changes should
-use ordinary commits, not repeat the history reset.
+`PUBLIC_PREVIEW=1 npm run build` followed by `node scripts/prepare-preview.mjs` produces a build for hosting under a path prefix: URLs are made portable under that prefix and storage APIs are excluded. The ordinary production build uses root-relative URLs.
 
-## Pages and preview
+## Legacy code
 
-Home, CV, Projects and Contact are independent static routes in each language.
-The navigation works without client-side JavaScript. There is no footer, gallery
-or project preview. See `FLOWS.md` for the expected user journeys.
-
-The restricted private preview uses `PUBLIC_PREVIEW=1 npm run build` and
-`node scripts/prepare-preview.mjs`. This copies build output into the existing
-preview folder, makes URLs portable under its host prefix, and excludes storage
-APIs. The ordinary production build keeps root-relative GitHub Pages URLs.
-
-Vocabulary.Trainer links to https://github.com/GothenburgOffice/vocabulary-training.
-The original tester is listed separately. Rekå Resor is intentionally omitted
-because the owner no longer controls the domain.
-
-Changes here do not authorize a GitHub deployment. Existing project Pages sites
-must retain their deployments and URL prefixes; see the checks in `FLOWS.md`.
+`react/` and `api/` hold the previous version of the site. They are kept for reference and are not built or deployed.
