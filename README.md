@@ -56,7 +56,7 @@ The restricted private preview uses `PUBLIC_PREVIEW=1 npm run build` and
 preview folder, makes URLs portable under its host prefix, and excludes storage
 APIs. The ordinary production build keeps root-relative GitHub Pages URLs.
 
-Vocabulary.Trainer links to https://github.com/hkarn/vocabulary-training.
+Vocabulary.Trainer links to https://github.com/GothenburgOffice/vocabulary-training.
 The original tester is listed separately. Rekå Resor is intentionally omitted
 because the owner no longer controls the domain.
 

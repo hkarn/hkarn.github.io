@@ -27,7 +27,7 @@ and one long page. The user explicitly replaces hash navigation and the filter.
 - Five text entries, each with a summary, live link and source link.
 - No screenshots, hover previews, repo-only entries or placeholders.
 - MoneyWorks and Vocabulary.Trainer are included on the user's assumption.
-- Vocabulary.Trainer links to hkarn/vocabulary-training. The original tester
+- Vocabulary.Trainer links to GothenburgOffice/vocabulary-training. The original tester
   remains a separate project with its own original source and live URLs.
 - Rekå Resor is omitted: the owner no longer controls its domain.
 
