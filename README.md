@@ -41,7 +41,3 @@ Several projects have their own Pages sites under this domain, such as `/currenc
 ## Preview build
 
 `PUBLIC_PREVIEW=1 npm run build` followed by `node scripts/prepare-preview.mjs` produces a build for hosting under a path prefix: URLs are made portable under that prefix and storage APIs are excluded. The ordinary production build uses root-relative URLs.
-
-## Legacy code
-
-`react/` and `api/` hold the previous version of the site. They are kept for reference and are not built or deployed.
