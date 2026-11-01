@@ -55,7 +55,7 @@ export const moreExperience: Role[] = [
 
 export const education: Role[] = [
   {
-    role: { en: 'JavaScript developer, front end', sv: 'JavaScript-utvecklare, front-end' },
+    role: { en: 'Full-stack JavaScript developer', sv: 'Fullstackutvecklare JavaScript' },
     org: { en: 'Lernia, higher vocational degree', sv: 'Lernia, yrkeshögskoleexamen' },
   },
   {
