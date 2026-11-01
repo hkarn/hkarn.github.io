@@ -21,8 +21,8 @@ export const projects: Project[] = [
   {
     name: { en: 'Vocabulary.Trainer', sv: 'Vocabulary.Trainer' },
     summary: {
-      en: 'Save word lists, practise between language pairs and focus on the words that need more work. Statistical sampling adapts the tests to your results, without AI.',
-      sv: 'Spara ordlistor, öva mellan språkpar och fokusera på orden som behöver mer träning. Statistiskt urval anpassar proven efter dina resultat, utan AI.',
+      en: 'Save word lists, practise between language pairs and focus on the words that need more work. Statistical sampling adapts the tests to your results, and a built-in LLM integration powers several AI-assisted features.',
+      sv: 'Spara ordlistor, öva mellan språkpar och fokusera på orden som behöver mer träning. Statistiskt urval anpassar proven efter dina resultat, och en inbyggd LLM-integration driver flera AI-assisterade funktioner.',
     },
     live: { en: 'https://vocabulary.training/', sv: 'https://vocabulary.training/' },
     source: 'https://github.com/GothenburgOffice/vocabulary-training',
