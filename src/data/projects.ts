@@ -37,16 +37,16 @@ export const projects: Project[] = [
     source: 'https://github.com/hkarn/spinnfiskeklubben-vinga-website',
   },
   {
-    name: { en: 'Requesty Tester', sv: 'Requesty Tester' },
+    name: { en: 'LLM Playground', sv: 'LLM Playground' },
     summary: {
-      en: 'A browser console for testing the Requesty AI router. Pick a model, send a request and inspect the answer, raw JSON, headers and a ready-to-run curl command. Covers chat, embeddings, image generation, text-to-speech and speech-to-text.',
-      sv: 'En webbkonsol för att testa AI-routern Requesty. Välj en modell, skicka en förfrågan och granska svaret, rå JSON, headers och ett färdigt curl-kommando. Hanterar chatt, embeddings, bildgenerering, text till tal och tal till text.',
+      en: 'A browser console for testing LLM APIs. Pick a model, send a request and inspect the answer, raw JSON, headers and a ready-to-run curl command.',
+      sv: 'En webbkonsol för att testa LLM-API:er. Välj en modell, skicka en förfrågan och granska svaret, rå JSON, headers och ett färdigt curl-kommando.',
     },
     live: {
-      en: 'https://hkarn.github.io/requesty-tester/',
-      sv: 'https://hkarn.github.io/requesty-tester/',
+      en: 'https://hkarn.github.io/LLM-PlayGround/',
+      sv: 'https://hkarn.github.io/LLM-PlayGround/',
     },
-    source: 'https://github.com/hkarn/requesty-tester',
+    source: 'https://github.com/hkarn/LLM-PlayGround',
   },
   {
     name: { en: 'Currency converter', sv: 'Valutaomvandlare' },

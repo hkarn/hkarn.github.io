@@ -42,7 +42,7 @@ Every page has a title and description per language, Open Graph and Twitter card
 
 `.github/workflows/deploy.yml` builds and publishes to Pages on every push to `source`, or through a manual workflow dispatch. The repository's Pages publishing source must be "GitHub Actions". Only the generated `dist/` directory is uploaded.
 
-Several projects have their own Pages sites under this domain, such as `/currency-exchange-rates-front/`, `/vocabulary-tester-site/`, `/social-app-yhjust16/` and `/requesty-tester/`. Don't add catch-all redirects, custom-domain changes or generated directories that would shadow those paths.
+Several projects have their own Pages sites under this domain, such as `/currency-exchange-rates-front/`, `/vocabulary-tester-site/`, `/social-app-yhjust16/` and `/LLM-PlayGround/`. Don't add catch-all redirects, custom-domain changes or generated directories that would shadow those paths.
 
 ## Preview build
 

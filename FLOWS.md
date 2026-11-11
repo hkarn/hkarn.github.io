@@ -31,7 +31,7 @@ Checks to run in a browser after changes to layout, navigation or content.
 - Deploying this site must leave other repositories' Pages sites and their URL
   prefixes intact.
 - After a deploy, check /currency-exchange-rates-front/, /vocabulary-tester-site/,
-  /social-app-yhjust16/ and /requesty-tester/.
+  /social-app-yhjust16/ and /LLM-PlayGround/.
 
 ## Responsive and keyboard
 - All routes at 1440, 768 and 390px, with no horizontal overflow.
