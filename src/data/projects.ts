@@ -39,8 +39,8 @@ export const projects: Project[] = [
   {
     name: { en: 'LLM Playground', sv: 'LLM Playground' },
     summary: {
-      en: 'A browser console for testing LLM APIs. Pick a model, send a request and inspect the answer, raw JSON, headers and a ready-to-run curl command.',
-      sv: 'En webbkonsol för att testa LLM-API:er. Välj en modell, skicka en förfrågan och granska svaret, rå JSON, headers och ett färdigt curl-kommando.',
+      en: 'A playground for LLM providers and routers. Send requests, inspect the full response, and try small LLM tools and games. Works with OpenRouter, Requesty, LLM Gateway or any OpenAI-compatible endpoint; bring your own API key.',
+      sv: 'En lekplats för LLM-leverantörer och routrar. Skicka förfrågningar, granska hela svaret och prova små LLM-verktyg och spel. Fungerar med OpenRouter, Requesty, LLM Gateway eller valfri OpenAI-kompatibel endpoint; ta med din egen API-nyckel.',
     },
     live: {
       en: 'https://hkarn.github.io/LLM-PlayGround/',
