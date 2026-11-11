@@ -37,16 +37,16 @@ export const projects: Project[] = [
     source: 'https://github.com/hkarn/spinnfiskeklubben-vinga-website',
   },
   {
-    name: { en: 'Requesty Tester', sv: 'Requesty Tester' },
+    name: { en: 'LLM Playground', sv: 'LLM Playground' },
     summary: {
-      en: 'A browser console for testing the Requesty AI router. Pick a model, send a request and inspect the answer, raw JSON, headers and a ready-to-run curl command. Covers chat, embeddings, image generation, text-to-speech and speech-to-text.',
-      sv: 'En webbkonsol för att testa AI-routern Requesty. Välj en modell, skicka en förfrågan och granska svaret, rå JSON, headers och ett färdigt curl-kommando. Hanterar chatt, embeddings, bildgenerering, text till tal och tal till text.',
+      en: 'A playground for LLM providers and routers. Send requests, inspect the full response, and try small LLM tools and games. Works with OpenRouter, Requesty, LLM Gateway or any OpenAI-compatible endpoint; bring your own API key.',
+      sv: 'En lekplats för LLM-leverantörer och routrar. Skicka förfrågningar, granska hela svaret och prova små LLM-verktyg och spel. Fungerar med OpenRouter, Requesty, LLM Gateway eller valfri OpenAI-kompatibel endpoint; ta med din egen API-nyckel.',
     },
     live: {
-      en: 'https://hkarn.github.io/requesty-tester/',
-      sv: 'https://hkarn.github.io/requesty-tester/',
+      en: 'https://hkarn.github.io/LLM-PlayGround/',
+      sv: 'https://hkarn.github.io/LLM-PlayGround/',
     },
-    source: 'https://github.com/hkarn/requesty-tester',
+    source: 'https://github.com/hkarn/LLM-PlayGround',
   },
   {
     name: { en: 'Currency converter', sv: 'Valutaomvandlare' },
