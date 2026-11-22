@@ -43,8 +43,8 @@ export const projects: Project[] = [
       sv: 'En lekplats för LLM-leverantörer och routrar. Skicka förfrågningar, granska hela svaret och prova små LLM-verktyg och spel. Fungerar med OpenRouter, Requesty, LLM Gateway eller valfri OpenAI-kompatibel endpoint; ta med din egen API-nyckel.',
     },
     live: {
-      en: 'https://hkarn.github.io/LLM-PlayGround/',
-      sv: 'https://hkarn.github.io/LLM-PlayGround/',
+      en: 'https://arnoldson.dev/LLM-PlayGround/',
+      sv: 'https://arnoldson.dev/LLM-PlayGround/',
     },
     source: 'https://github.com/hkarn/LLM-PlayGround',
   },
@@ -55,8 +55,8 @@ export const projects: Project[] = [
       sv: 'Räkna om valutor och skapa egna korskurstabeller. En JavaScript-applikation som använder valutakurser från Coinbase.',
     },
     live: {
-      en: 'https://hkarn.github.io/currency-exchange-rates-front/',
-      sv: 'https://hkarn.github.io/currency-exchange-rates-front/',
+      en: 'https://arnoldson.dev/currency-exchange-rates-front/',
+      sv: 'https://arnoldson.dev/currency-exchange-rates-front/',
     },
     source: 'https://github.com/hkarn/currency-exchange-rates-front',
   },
@@ -67,8 +67,8 @@ export const projects: Project[] = [
       sv: 'Den ursprungliga glosövningen: skriv in ordpar eller klistra in listor och testa sedan översättningarna. Med import och export av CSV-filer.',
     },
     live: {
-      en: 'https://hkarn.github.io/vocabulary-tester-site/',
-      sv: 'https://hkarn.github.io/vocabulary-tester-site/',
+      en: 'https://arnoldson.dev/vocabulary-tester-site/',
+      sv: 'https://arnoldson.dev/vocabulary-tester-site/',
     },
     source: 'https://github.com/hkarn/vocabulary-tester-site',
   },
