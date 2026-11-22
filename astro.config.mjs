@@ -2,14 +2,14 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// GitHub Pages user site: served from the domain root, plain static files only.
+// GitHub Pages user site at arnoldson.dev (custom domain): served from the root, plain static files only.
 export default defineConfig({
-  site: 'https://hkarn.github.io',
+  site: 'https://arnoldson.dev',
   output: 'static',
   integrations: [
     sitemap({
       // The root only redirects to a language, so it is left out.
-      filter: (page) => page !== 'https://hkarn.github.io/',
+      filter: (page) => page !== 'https://arnoldson.dev/',
       i18n: { defaultLocale: 'en', locales: { en: 'en', sv: 'sv' } },
     }),
   ],
